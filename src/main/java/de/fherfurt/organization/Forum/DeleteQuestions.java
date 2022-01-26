@@ -1,4 +1,4 @@
-package de.fherfurt.organization;
+package de.fherfurt.organization.Forum;
 
 // first Implementation. definitely needs a review
 
