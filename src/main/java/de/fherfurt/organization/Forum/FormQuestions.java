@@ -1,4 +1,4 @@
-package de.fherfurt.organization;
+package de.fherfurt.organization.Forum;
 
 /**
  * It represents a new question in the forum

@@ -1,4 +1,4 @@
-package de.fherfurt.organization;
+package de.fherfurt.organization.Forum;
 
 public enum Topic {
     CORONA,
