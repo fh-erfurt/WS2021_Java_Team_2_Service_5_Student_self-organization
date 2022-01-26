@@ -13,7 +13,6 @@ public class ListElement
         next = null;    // in case it's the last element
     }
 
-
     public boolean hasNext()
     {
         if (this.next == null)
