@@ -9,7 +9,7 @@ public class CreateQuestion
     private Topic topic = Topic.Fragen;
     private enum Topic{Corona, PraesenzMassnahmen, Fragen}
 
-    //private int Length asdasd
+    //private int Length
     //private int FAQArray[];
     private LocalDateTime dateQuestionCreated;
     /*
