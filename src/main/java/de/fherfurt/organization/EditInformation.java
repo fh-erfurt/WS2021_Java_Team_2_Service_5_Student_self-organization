@@ -17,13 +17,17 @@ public class EditInformation {
     //service persons
     }
 
-    public void setContent(String content){
+    private void setContent(String content){
         this.content = content;
     }
 
-    public void setHeader(String header){
+    private void setHeader(String header){
         this.header = header;
     }
 
+    private void ShowInformation(){
+        System.out.println(header);
+        System.out.println(content);
+    }
 
 }
