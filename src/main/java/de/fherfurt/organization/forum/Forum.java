@@ -6,12 +6,18 @@ public class Forum {
     private ArrayList<String> topics;
     private ArrayList<Question> questions;
 
-    public void addNewQuestion(){
-
+    public void addNewQuestion(String topic, String title, String text, String author){
+        this.questions.add(new Question(topic, title, text, author));
     }
 
-    public void removeQuestion(String title){
-
+    public boolean removeQuestion(String title){
+        for(int i = 0; i < this.questions.size(); i++){
+            if(this.questions.get(i).getTitle().equals(title)){
+                this.questions.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Question> getByTopic (String topic){
@@ -27,10 +33,22 @@ public class Forum {
     }
 
     public boolean addNewTopic (String newTopic){
-
+        for(int i = 0; i < this.topics.size(); i++){
+            if(this.topics.get(i).equals(newTopic)){
+                return false;
+            }
+        }
+        this.topics.add(newTopic);
+        return true;
     }
 
     public boolean removeTopic (String topic){
-
+        for(int i = 0; i < this.topics.size(); i++){
+            if(this.topics.get(i).equals(topic)){
+                this.topics.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 }

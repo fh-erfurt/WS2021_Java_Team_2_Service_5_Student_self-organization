@@ -7,14 +7,18 @@ public class Question {
     private String topic;
     private ArrayList<Answer> answers;
 
-    public Question(String topic, ArrayList<Answer> answers, String title, String text, String author) {
+    public Question(String topic, String title, String text, String author) {
         this.message = new Message(title, text, author);
         this.topic = topic;
-        this.answers = answers;
+        this.answers = new ArrayList<>();
     }
 
     public void addAnswer (String title, String text, String author){
         this.answers.add(new Answer(title, text, author));
+    }
+
+    public String getTitle() {
+        return this.message.getTitle();
     }
 
     public boolean removeAnswer (String title){
