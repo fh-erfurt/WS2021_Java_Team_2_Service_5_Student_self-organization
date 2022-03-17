@@ -2,6 +2,11 @@ package de.fherfurt.organization.forum;
 
 import java.util.ArrayList;
 
+/**
+ *
+ *
+ * @author Jenny Wagner
+ */
 public class Question {
     private Message message;
     private String topic;
@@ -17,10 +22,11 @@ public class Question {
         this.answers.add(new Answer(title, text, author));
     }
 
-    public String getTitle() {
-        return this.message.getTitle();
-    }
-
+    /**
+     *
+     * @param title
+     * @return
+     */
     public boolean removeAnswer (String title){
         for(int i = 0; i < this.answers.size(); i++){
             if(this.answers.get(i).getTitle().equals(title)){
@@ -29,5 +35,17 @@ public class Question {
             }
         }
         return false;
+    }
+
+    public String getTitle() {
+        return this.message.getTitle();
+    }
+
+    public String getAuthor () {
+        return this.message.getAuthor();
+    }
+
+    public String getTopic() {
+        return this.topic;
     }
 }

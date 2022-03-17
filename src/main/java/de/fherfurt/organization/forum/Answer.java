@@ -1,5 +1,10 @@
 package de.fherfurt.organization.forum;
 
+/**
+ *
+ *
+ * @author Jenny Wagner
+ */
 public class Answer {
     private Message message;
 
