@@ -21,7 +21,17 @@ public class Forum {
     }
 
     public ArrayList<Question> getByTopic (String topic){
+        ArrayList<Question> result = new ArrayList<>();
 
+        if(isTopic(topic)) {
+            for(int i = 0; i < this.questions.size(); i++) {
+                if(this.questions.get(i).getTopic().equals(topic)) {
+                    result.add(this.questions.get(i));
+                }
+            }
+        }
+
+        return result;
     }
 
     public ArrayList<Question> getByQuestionTitle (String question){
