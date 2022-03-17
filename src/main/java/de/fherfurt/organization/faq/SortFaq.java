@@ -1,6 +1,4 @@
-package de.fherfurt.organization.FAQ;
-
-import java.awt.*;
+package de.fherfurt.organization.faq;
 
 public class SortFaq {
 

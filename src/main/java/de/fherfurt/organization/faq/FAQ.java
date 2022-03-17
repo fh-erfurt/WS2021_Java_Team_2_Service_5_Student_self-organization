@@ -1,4 +1,4 @@
-package de.fherfurt.organization.FAQ;
+package de.fherfurt.organization.faq;
 
 import java.util.List;
 

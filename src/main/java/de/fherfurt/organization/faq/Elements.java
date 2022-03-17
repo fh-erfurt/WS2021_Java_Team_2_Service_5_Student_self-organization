@@ -1,4 +1,4 @@
-package de.fherfurt.organization.FAQ;
+package de.fherfurt.organization.faq;
 
 import java.time.LocalDateTime;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package de.fherfurt.organization.Forum;
+package de.fherfurt.organization.forum;
 
 // List itself with some methods
 

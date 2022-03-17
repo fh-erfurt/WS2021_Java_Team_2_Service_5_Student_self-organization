@@ -1,4 +1,4 @@
-package de.fherfurt.organization.Forum;
+package de.fherfurt.organization.forum;
 
 // defines how the elements of the list are built up
 
