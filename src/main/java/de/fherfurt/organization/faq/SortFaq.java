@@ -12,3 +12,4 @@ public class SortFaq {
         return direction;
     }
 }
+
