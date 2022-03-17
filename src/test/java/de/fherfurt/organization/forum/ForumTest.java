@@ -28,15 +28,12 @@ class ForumTest {
     @Test
     void shouldRemoveQuestion () {
         // given
-            // Was brauch ich für den Test
         Forum forum = createTestForum();
 
         String title = "Semesterbeginn ?";
         // when
-            // zu testende Methode wird ausgeführt (Resultat gegebenenfalls gespeichert)
         boolean result = forum.removeQuestion(title);
         // then
-            // Mit Assertions.assertThat wird Test ausgeführt
         Assertions.assertThat(result).isTrue();
     }
 

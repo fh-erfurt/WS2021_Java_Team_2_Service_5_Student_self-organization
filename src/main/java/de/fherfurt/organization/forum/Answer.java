@@ -1,7 +1,7 @@
 package de.fherfurt.organization.forum;
 
 /**
- *
+ * represents an answer to a forum question
  *
  * @author Jenny Wagner
  */

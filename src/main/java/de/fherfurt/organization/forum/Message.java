@@ -1,5 +1,10 @@
 package de.fherfurt.organization.forum;
 
+/**
+ * is a data container for a basic message
+ *
+ * @author Jenny Wagner
+ */
 public class Message {
     private String title;
     private String text;

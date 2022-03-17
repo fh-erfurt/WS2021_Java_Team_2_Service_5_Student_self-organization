@@ -3,7 +3,7 @@ package de.fherfurt.organization.forum;
 import java.util.ArrayList;
 
 /**
- *
+ * represents a question in the forum and contains the answers and the topic
  *
  * @author Jenny Wagner
  */
@@ -23,9 +23,10 @@ public class Question {
     }
 
     /**
+     * removes an answer from this question
      *
-     * @param title
-     * @return
+     * @param title of the answer to delete
+     * @return if the remove was success
      */
     public boolean removeAnswer (String title){
         for(int i = 0; i < this.answers.size(); i++){
