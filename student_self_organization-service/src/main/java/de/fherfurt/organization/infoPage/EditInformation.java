@@ -3,12 +3,13 @@ package de.fherfurt.organization.infoPage;
 import de.fherfurt.persons.client.PersonsClient;
 import de.fherfurt.persons.client.DevPerson;
 
+import java.util.List;
+
 
 public class EditInformation {
 
     private String header;
     private String content;
-    private DevPerson devPerson;
 
     EditInformation(String header, String content){
         this.header = header;
