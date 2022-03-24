@@ -14,10 +14,10 @@ import java.util.List;
 
 
 class FaqRepositoryTest {
-    private FaqRepository faqRepo = new FaqRepository();
-    Elements firstElement = new Elements.Builder().withTitle("Semester Rückmeldung").withContent("beispiel text").withAuthor("Felix Zwicker").withDate().build();
-    Elements secondElement = new Elements.Builder().withTitle("Bafög").withContent("bafög antwort").withAuthor("Felix Zwicker").withDate().build();
-    Elements thirdElement = new Elements.Builder().withTitle("Gremien").withContent("gremien antwort").withAuthor("Max Mustermann").withDate().build();
+    private FaqRepository faqRepo;
+    Element firstElement = new Element.Builder().withTitle("Semester Rückmeldung").withContent("beispiel text").withAuthor("Felix Zwicker").withDate().build();
+    Element secondElement = new Element.Builder().withTitle("Bafög").withContent("bafög antwort").withAuthor("Felix Zwicker").withDate().build();
+    Element thirdElement = new Element.Builder().withTitle("Gremien").withContent("gremien antwort").withAuthor("Max Mustermann").withDate().build();
 
     @BeforeEach
     void setupFaq(){
@@ -61,7 +61,7 @@ class FaqRepositoryTest {
     }
 
     @Test
-    void shouldGetFaqElementsWithSameAuthor() throws EntryNotFoundException {
+    void shouldGetFaqElementsWithSameAuthor() throws EntryNotFoundException{
         String searchedTestAuthor = "Felix Zwicker";
         int expectedSizeOfFoundElements = 2;
 
@@ -78,7 +78,7 @@ class FaqRepositoryTest {
 
     @Test
     void shouldSortAscByTitle(){
-        List<Elements> expectedOrder = new LinkedList<>();
+        List<Element> expectedOrder = new LinkedList<>();
         expectedOrder.add(secondElement);
         expectedOrder.add(thirdElement);
         expectedOrder.add(firstElement);
@@ -91,7 +91,7 @@ class FaqRepositoryTest {
 
     @Test
     void shouldSortDescByTitle(){
-        List<Elements> expectedOrder = new LinkedList<>();
+        List<Element> expectedOrder = new LinkedList<>();
         expectedOrder.add(firstElement);
         expectedOrder.add(thirdElement);
         expectedOrder.add(secondElement);
@@ -104,7 +104,7 @@ class FaqRepositoryTest {
 
     @Test
     void shouldSortDescById() {
-        List<Elements> expectedOrder = new LinkedList<>();
+        List<Element> expectedOrder = new LinkedList<>();
         expectedOrder.add(thirdElement);
         expectedOrder.add(secondElement);
         expectedOrder.add(firstElement);
@@ -118,7 +118,7 @@ class FaqRepositoryTest {
     /**
      * testing toString
      *
-     * @see Elements
+     * @see Element
      */
     @Test
     void printFaqListToString(){

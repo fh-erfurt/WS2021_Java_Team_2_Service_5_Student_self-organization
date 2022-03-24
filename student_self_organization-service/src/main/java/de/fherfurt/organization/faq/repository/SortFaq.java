@@ -3,7 +3,7 @@ package de.fherfurt.organization.faq.repository;
 import de.fherfurt.organization.faq.core.enums.SortDirection;
 import de.fherfurt.organization.faq.core.enums.SortPriority;
 import de.fherfurt.organization.faq.core.SortSettings;
-import de.fherfurt.organization.faq.core.Elements;
+import de.fherfurt.organization.faq.core.Element;
 
 import java.util.Comparator;
 
@@ -13,7 +13,7 @@ import java.util.Comparator;
  *
  * @author Felix Zwicker
  */
-public class SortFaq implements Comparator<Elements> {
+public class SortFaq implements Comparator<Element> {
 
     private final SortSettings sortSettings;
 
@@ -32,26 +32,41 @@ public class SortFaq implements Comparator<Elements> {
      *
      * @param firstElement first object to compare
      * @param secondElement second object to compare
-     * @return solution solution of comparisons * direction for asc or desc order
+     * @return solution of comparison * direction for asc or desc order
      */
     @Override
-    public int compare(Elements firstElement, Elements secondElement){
+    public int compare(Element firstElement, Element secondElement){
         int solution = 0;
         int direction = 1;
 
-        if(sortSettings.getSortDirection() == SortDirection.DESC)
+        if(sortSettings.getSortDirection() == SortDirection.DESC){
             direction = -1;
+        }
 
-        if(firstElement == null && secondElement == null)
+        if(firstElement == null && secondElement == null){
             solution = 0;
-        else if(sortSettings.getSortPriority() == SortPriority.TITLE)
+        }
+        else if(sortSettings.getSortPriority() == SortPriority.TITLE){
             solution = firstElement.getTitle().compareTo(secondElement.getTitle());
-        else if(sortSettings.getSortPriority() == SortPriority.DATE)
+        }
+        else if(sortSettings.getSortPriority() == SortPriority.DATE){
             solution = firstElement.getDate().compareTo(secondElement.getDate());
-        else if(sortSettings.getSortPriority() == SortPriority.ID)
+        }
+        else if(sortSettings.getSortPriority() == SortPriority.ID){
             solution = firstElement.getElementId() - (secondElement.getElementId());
+        }
 
         return solution * direction;
     }
-}
 
+
+    private <T>Object getData(Element element){
+        String other = "";
+        if(element.getTitle() == null){
+            return other;
+        }
+        else {
+            return element.getTitle();
+        }
+    }
+}
