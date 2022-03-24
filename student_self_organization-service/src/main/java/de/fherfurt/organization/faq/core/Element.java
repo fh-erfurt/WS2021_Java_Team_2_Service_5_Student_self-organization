@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  * Class carries all information of a FAQ-Element
- * Class represents and creates elements for FAQ and puts them in the FaqRepository
+ * Class represents and creates element for FAQ and puts them in the FaqRepository
  *
  * @author Felix Zwicker
  */
@@ -99,8 +99,21 @@ public class Element
         }
 
         /**
+         * allows building Element with self-declared Date
+         *
+         * @param year - Date year
+         * @param month - Date month
+         * @param day - Date day
+         */
+        public Builder withSelfDeclaredDate(int year, int month, int day){
+            this.date = LocalDate.of(year,month,day);
+            return this;
+        }
+
+        /**
          * builds the object Element
-         * @return new constructed Element
+         *
+         * @return constructed Element
          */
         public Element build(){
             return new Element(title,content,author,date,0);
@@ -110,8 +123,6 @@ public class Element
     /**
      * converts object to String
      * overriding toString method makes it easier to operate
-     *
-     * @return object to string
      */
     @Override
     public String toString(){

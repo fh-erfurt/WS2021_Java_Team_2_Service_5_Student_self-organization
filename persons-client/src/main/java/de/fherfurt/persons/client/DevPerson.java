@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Class containing list with created Persons
- * used to get Persons
+ *
  */
 public class DevPerson implements PersonsClient{
     List<Person> personList;
@@ -16,9 +16,18 @@ public class DevPerson implements PersonsClient{
         personList.add(new Person("Sabine","Musterfrau","Gremien Leitung","6.0.12","sabine-musterfrau@fh-erfurt.de","0132435465",2));
     }
 
-    public Person getPersonById(int id){
+    /**
+     * Methode to get a Person with all of his/her values
+     * using stream
+     *
+     * @param personId - id of searched Person
+     * @return Person - found Person
+     */
+    public Person getPersonById(int personId){
         return personList.stream()
-                .filter(Elements -> id == Elements.getPersonId()).findAny().orElse(null);
+                .filter(Elements -> personId == Elements.getPersonId())
+                .findAny()
+                .orElse(null);
     }
 
     @Override

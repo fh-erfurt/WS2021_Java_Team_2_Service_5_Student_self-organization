@@ -16,15 +16,20 @@ public class InfoPageRepository {
 
     InfoPageRepository() {
         personsList = new LinkedList<>();
+        //currently, only one InfoPage is needed
+        //therefore it is declared directly
         infoPage = new InfoPage("", "", personsList);
     }
 
     /**
      * adds Person to personList in object InfoPage
      *
-     * @param person created Person from Person-Client
-     * @see InfoPage
+     * Persons are declared in DevPerson from Person-Client
+     * and accessed through id
+     *
+     * @param person - Person from Person-Client
      * @see Person
+     * @see de.fherfurt.persons.client.DevPerson
      */
     public void addPersonToInfoPage(Person person) {
         //get personList of object
@@ -34,16 +39,18 @@ public class InfoPageRepository {
     }
 
     /**
-     * removes Person from personList on object InfoPage
+     * removes Person from personList in object InfoPage
      *
-     * @param personId id of needed person
+     * @param personId - ID of needed person
      */
     public void removePersonFromInfoPageById(int personId) {
         //get personList of object
         personsList = infoPage.getPersonList();
         //search for person by id in list
         Person searchedPerson = personsList.stream()
-                .filter(Person -> personId == Person.getPersonId()).findAny().orElse(null);
+                .filter(Person -> personId == Person.getPersonId())
+                .findAny()
+                .orElse(null);
         //remove found person
         personsList.remove(searchedPerson);
     }

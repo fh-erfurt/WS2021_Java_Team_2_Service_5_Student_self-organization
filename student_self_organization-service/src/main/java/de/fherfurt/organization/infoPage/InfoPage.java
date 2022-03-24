@@ -49,8 +49,6 @@ public class InfoPage {
     /**
      * converts object to String
      * overriding toString method makes it easier to operate
-     *
-     * @return object to string
      */
     @Override
     public String toString(){

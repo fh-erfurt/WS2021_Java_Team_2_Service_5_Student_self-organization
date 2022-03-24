@@ -4,7 +4,6 @@ import de.fherfurt.organization.faq.core.Element;
 import de.fherfurt.organization.faq.core.SortSettings;
 import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,8 +23,8 @@ public class FaqRepository {
     }
 
     /**
-     * adds Elements to List
-     * creates Id for Element
+     * adds Element to List
+     * creates elementId for Element
      *
      * @param element declared Element
      * @see Element
@@ -48,10 +47,11 @@ public class FaqRepository {
     }
 
     /**
-     * deletes Element
+     * removes Element from List
      *
-     * @param elementId removes element with elementId
-     * @throws EntryNotFoundException when no object with searched id exists
+     * @param elementId ID of Element
+     * @throws EntryNotFoundException when no object with searched ID exists
+     * @see EntryNotFoundException
      */
     public void deleteElementById(int elementId) throws EntryNotFoundException {
         faqList.remove(getElementById(elementId));
@@ -59,14 +59,18 @@ public class FaqRepository {
 
     /**
      * searches through the list by stream
+     * and returns found Element
      *
-     * @param elementId searched object id
-     * @return found element with needed id
+     * @param elementId ID of searched Element
+     * @return found Element
      * @throws EntryNotFoundException when no object with searched id exists
+     * @see EntryNotFoundException
      */
     public Element getElementById(int elementId) throws EntryNotFoundException {
         Element searchedElement = faqList.stream()
-                .filter(Elements -> elementId == Elements.getElementId()).findAny().orElse(null);
+                .filter(Elements -> elementId == Elements.getElementId())
+                .findAny()
+                .orElse(null);
 
         if (searchedElement == null) {
             throw new EntryNotFoundException("Element with ID: " + elementId + " couldnt be found");
@@ -78,11 +82,12 @@ public class FaqRepository {
      * Iterator to go through the list
      * adds found objects to new created list
      *
-     * @param author searched object author
-     * @return created list size - needed for tests
+     * @param author author of searched Elements
+     * @return new created list containing Elements with same author
      * @throws EntryNotFoundException when no object with searched author exists
+     * @see EntryNotFoundException
      */
-    public int getElementsByAuthorUsingIterator(String author) throws EntryNotFoundException {
+    public List<Element> getElementsByAuthorUsingIterator(String author) throws EntryNotFoundException {
         List<Element> sameAuthor = new LinkedList<>();
         for (Element element : faqList) {
             if (element.getAuthor().equals(author)) {
@@ -92,7 +97,7 @@ public class FaqRepository {
         if (sameAuthor.size() == 0) {
             throw new EntryNotFoundException("No Elements with Author: " + author + " found");
         }
-        return sameAuthor.size();
+        return sameAuthor;
     }
 
     /**
@@ -102,15 +107,15 @@ public class FaqRepository {
      * @see SortSettings
      */
     public void sortList(SortSettings sortSettings) {
-        Collections.sort(faqList, new SortFaq(sortSettings));
-    }
-
-    public void clearFaqList() {
-        faqList.clear();
+        faqList.sort(new SortFaq(sortSettings));
     }
 
     public List<Element> getFaqList() {
         return faqList;
+    }
+
+    public void clearFaqList() {
+        faqList.clear();
     }
 
     public void printFaqList() {

@@ -20,7 +20,7 @@ public class SortFaq implements Comparator<Element> {
     /**
      * Constructor
      *
-     * @param sortSettings prior declared sort settings
+     * @param sortSettings - prior declared sort settings
      * @see SortSettings
      */
     public SortFaq(SortSettings sortSettings){
@@ -30,23 +30,21 @@ public class SortFaq implements Comparator<Element> {
     /**
      * compares two objects and sorts them
      *
-     * @param firstElement first object to compare
-     * @param secondElement second object to compare
-     * @return solution of comparison * direction for asc or desc order
+     * @param firstElement - first object to compare
+     * @param secondElement - second object to compare
+     * @return int value - solution of comparison * direction for asc or desc order
      */
     @Override
     public int compare(Element firstElement, Element secondElement){
         int solution = 0;
         int direction = 1;
 
+        assert firstElement != null;
         if(sortSettings.getSortDirection() == SortDirection.DESC){
             direction = -1;
         }
 
-        if(firstElement == null && secondElement == null){
-            solution = 0;
-        }
-        else if(sortSettings.getSortPriority() == SortPriority.TITLE){
+        if(sortSettings.getSortPriority() == SortPriority.TITLE){
             solution = firstElement.getTitle().compareTo(secondElement.getTitle());
         }
         else if(sortSettings.getSortPriority() == SortPriority.DATE){
@@ -56,17 +54,8 @@ public class SortFaq implements Comparator<Element> {
             solution = firstElement.getElementId() - (secondElement.getElementId());
         }
 
+        //when direction was set to -1 the solution value is reversed
+        //that brings the same result as reversing the sortOrder
         return solution * direction;
-    }
-
-
-    private <T>Object getData(Element element){
-        String other = "";
-        if(element.getTitle() == null){
-            return other;
-        }
-        else {
-            return element.getTitle();
-        }
     }
 }
