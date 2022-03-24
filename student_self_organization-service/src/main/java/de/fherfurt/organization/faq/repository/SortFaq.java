@@ -3,7 +3,7 @@ package de.fherfurt.organization.faq.repository;
 import de.fherfurt.organization.faq.core.enums.SortDirection;
 import de.fherfurt.organization.faq.core.enums.SortPriority;
 import de.fherfurt.organization.faq.core.SortSettings;
-import de.fherfurt.organization.faq.core.Elements;
+import de.fherfurt.organization.faq.core.Element;
 
 import java.util.Comparator;
 
@@ -13,14 +13,14 @@ import java.util.Comparator;
  *
  * @author Felix Zwicker
  */
-public class SortFaq implements Comparator<Elements> {
+public class SortFaq implements Comparator<Element> {
 
     private final SortSettings sortSettings;
 
     /**
      * Constructor
      *
-     * @param sortSettings prior declared sort settings
+     * @param sortSettings - prior declared sort settings
      * @see SortSettings
      */
     public SortFaq(SortSettings sortSettings){
@@ -30,28 +30,32 @@ public class SortFaq implements Comparator<Elements> {
     /**
      * compares two objects and sorts them
      *
-     * @param firstElement first object to compare
-     * @param secondElement second object to compare
-     * @return solution solution of comparisons * direction for asc or desc order
+     * @param firstElement - first object to compare
+     * @param secondElement - second object to compare
+     * @return int value - solution of comparison * direction for asc or desc order
      */
     @Override
-    public int compare(Elements firstElement, Elements secondElement){
+    public int compare(Element firstElement, Element secondElement){
         int solution = 0;
         int direction = 1;
 
-        if(sortSettings.getSortDirection() == SortDirection.DESC)
+        assert firstElement != null;
+        if(sortSettings.getSortDirection() == SortDirection.DESC){
             direction = -1;
+        }
 
-        if(firstElement == null && secondElement == null)
-            solution = 0;
-        else if(sortSettings.getSortPriority() == SortPriority.TITLE)
+        if(sortSettings.getSortPriority() == SortPriority.TITLE){
             solution = firstElement.getTitle().compareTo(secondElement.getTitle());
-        else if(sortSettings.getSortPriority() == SortPriority.DATE)
+        }
+        else if(sortSettings.getSortPriority() == SortPriority.DATE){
             solution = firstElement.getDate().compareTo(secondElement.getDate());
-        else if(sortSettings.getSortPriority() == SortPriority.ID)
+        }
+        else if(sortSettings.getSortPriority() == SortPriority.ID){
             solution = firstElement.getElementId() - (secondElement.getElementId());
+        }
 
+        //when direction was set to -1 the solution value is reversed
+        //that brings the same result as reversing the sortOrder
         return solution * direction;
     }
 }
-

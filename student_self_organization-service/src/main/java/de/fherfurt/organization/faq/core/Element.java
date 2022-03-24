@@ -3,13 +3,12 @@ package de.fherfurt.organization.faq.core;
 import java.time.LocalDate;
 
 /**
- * Class carries all informations of a FAQ-Element
- * Class represents and creats elements for FAQ and puts them in the FaqRepository
+ * Class carries all information of a FAQ-Element
+ * Class represents and creates element for FAQ and puts them in the FaqRepository
  *
  * @author Felix Zwicker
  */
-
-public class Elements
+public class Element
 {
     private String title;
     private String content;
@@ -17,19 +16,13 @@ public class Elements
     private LocalDate date;
     private int elementId;
 
-    private Elements(){}
-
-    /**
-     * Constructor
-     *
-      * @param builder uses Builder class to construct
-     */
-    private Elements(Builder builder){
-        this.title = builder.title;
-        this.content = builder.content;
-        this.author = builder.author;
-        this.date = builder.date;
-        this.elementId = builder.elementId;
+    private Element(){}
+    private Element(String title, String content, String author, LocalDate date, int elementId) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+        this.date = date;
+        this.elementId = elementId;
     }
 
     //Setter
@@ -75,15 +68,14 @@ public class Elements
     }
 
     /**
-     * Class using Builder pattern to help construct the Elements of the FAQ
-     * flexible in constructing Elements and easier for future updates
+     * Class using Builder pattern to help construct an Element of the FAQ
+     * flexible in constructing an Element and easier for future updates
      */
     public static class Builder{
         private String title;
         private String content;
         private String author;
         private LocalDate date;
-        private int elementId;
 
         public Builder(){}
         public Builder withTitle(String title){
@@ -106,19 +98,26 @@ public class Elements
             return this;
         }
 
-        public Builder withElementId(int elementId){
-            this.elementId = elementId;
+        /**
+         * allows building Element with self-declared Date
+         *
+         * @param year - Date year
+         * @param month - Date month
+         * @param day - Date day
+         */
+        public Builder withSelfDeclaredDate(int year, int month, int day){
+            this.date = LocalDate.of(year,month,day);
             return this;
         }
 
         /**
          * builds the object Element
-         * @return Elements constructed Element
+         *
+         * @return constructed Element
          */
-        public Elements build(){
-            return new Elements(this);
+        public Element build(){
+            return new Element(title,content,author,date,0);
         }
-
     }
 
     /**

@@ -16,14 +16,15 @@ public class SortSettings {
     /**
      * Constructor
      *
-     * @param sortDirection enum for ASC or DESC order
-     * @param sortPriority enum TITLE, DATE, ID for prioritized order
+     * @param sortDirection - enum for ASC or DESC order
+     * @param sortPriority - enum TITLE, DATE, ID for prioritized order
      */
     public SortSettings(SortDirection sortDirection, SortPriority sortPriority){
         this.sortDirection = sortDirection;
         this.sortPriority = sortPriority;
     }
 
+    //Setter
     public void setSortDirection(SortDirection sortDirection){
         this.sortDirection = sortDirection;
     }
@@ -32,6 +33,7 @@ public class SortSettings {
         this.sortPriority = sortPriority;
     }
 
+    //Getter
     public SortDirection getSortDirection(){
         return sortDirection;
     }
