@@ -16,7 +16,6 @@ public class Element
     private LocalDate date;
     private int elementId;
 
-    private Element(){}
     private Element(String title, String content, String author, LocalDate date, int elementId) {
         this.title = title;
         this.content = content;

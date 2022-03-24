@@ -2,24 +2,17 @@ package de.fherfurt.organization.infoPage;
 
 import de.fherfurt.persons.client.DevPerson;
 import de.fherfurt.persons.client.Person;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class InfoPageRepositoryTest {
     private InfoPageRepository infoPageRepository;
-    private DevPerson devPerson;
 
     @BeforeEach
     void setup(){
         infoPageRepository = new InfoPageRepository();
-        devPerson = new DevPerson();
+        DevPerson devPerson = new DevPerson();
         infoPageRepository.addPersonToInfoPage(devPerson.getPersonById(1));
         infoPageRepository.addPersonToInfoPage(devPerson.getPersonById(2));
     }
@@ -40,7 +33,7 @@ class InfoPageRepositoryTest {
         int personId = 2;
         int expectedPersonListSize = 1;
 
-        infoPageRepository.removePersonFromInfoPageById(2);
+        infoPageRepository.removePersonFromInfoPageById(personId);
 
         Assertions.assertEquals(expectedPersonListSize, infoPageRepository.getInfoPage().getPersonList().size());
     }
