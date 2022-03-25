@@ -10,16 +10,16 @@ import java.util.ArrayList;
  *
  * @author Friedemann Taubert
  */
-public class Forum {
-    private ArrayList<String> topics;
-    private ArrayList<Question> questions;
+public class ForumRepository {
+    private final ArrayList<String> topics;
+    private final ArrayList<Question> questions;
 
-    public Forum () {
+    public ForumRepository() {
         this.topics = new ArrayList<>();
         this.questions = new ArrayList<>();
     }
 
-    public void addNewQuestion(String topic, String title, String text, String author){
+    public void addNewQuestion(String topic, String title, String text, String author) {
         this.questions.add(new Question(topic, title, text, author));
     }
 
@@ -30,13 +30,14 @@ public class Forum {
      * @return returns false, if the name isn't found
      * deletes the questions and returns true, if we found the title
      */
-    public boolean removeQuestion(String title){
-        for(int i = 0; i < this.questions.size(); i++){
-            if(this.questions.get(i).getTitle().equals(title)){
-                this.questions.remove(i);
+    public boolean removeQuestion(String title) {
+        for (Question question : this.questions) {
+            if (question.getTitle().equals(title)) {
+                this.questions.remove(question);
                 return true;
             }
         }
+
         return false;
     }
 
@@ -48,13 +49,13 @@ public class Forum {
      * returns an empty list, if no questions were found or the given topic
      * doesn't exist
      */
-    public ArrayList<Question> getByTopic (String topic){
+    public ArrayList<Question> getByTopic(String topic) {
         ArrayList<Question> result = new ArrayList<>();
 
-        if(isTopic(topic)) {
-            for(int i = 0; i < this.questions.size(); i++) {
-                if(this.questions.get(i).getTopic().equals(topic)) {
-                    result.add(this.questions.get(i));
+        if (isTopic(topic)) {
+            for (Question question : this.questions) {
+                if (question.getTopic().equals(topic)) {
+                    result.add(question);
                 }
             }
         }
@@ -69,9 +70,9 @@ public class Forum {
      * @return true, if the topic exists
      * false, if it doesn't
      */
-    public boolean isTopic (String topic) {
-        for(int i = 0; i < this.topics.size(); i++) {
-            if(this.topics.get(i).equals(topic)) {
+    public boolean isTopic(String topic) {
+        for (String s : this.topics) {
+            if (s.equals(topic)) {
                 return true;
             }
         }
@@ -86,12 +87,12 @@ public class Forum {
      * returns an empty list, if no questions were found or the given title
      * doesn't exist
      */
-    public ArrayList<Question> getByQuestionTitle (String question){
+    public ArrayList<Question> getByQuestionTitle(String question) {
         ArrayList<Question> result = new ArrayList<>();
 
-        for(int i = 0; i <  this.questions.size(); i++) {
-            if(this.questions.get(i).getTitle().equals(question)) {
-                result.add(this.questions.get(i));
+        for (Question value : this.questions) {
+            if (value.getTitle().equals(question)) {
+                result.add(value);
             }
         }
 
@@ -106,12 +107,12 @@ public class Forum {
      * returns an empty list, if the author wasn't found or if there are
      * no questions found
      */
-    public ArrayList<Question> getByQuestionAuthor (String author){
+    public ArrayList<Question> getByQuestionAuthor(String author) {
         ArrayList<Question> result = new ArrayList<>();
 
-        for(int i = 0; i <  this.questions.size(); i++) {
-            if(this.questions.get(i).getAuthor().equals(author)) {
-                result.add(this.questions.get(i));
+        for (Question question : this.questions) {
+            if (question.getAuthor().equals(author)) {
+                result.add(question);
             }
         }
 
@@ -125,9 +126,9 @@ public class Forum {
      * @return false, if there already exists a topic with the same name
      * creates a new topic and returns true, if the topic doesn't exist yet
      */
-    public boolean addNewTopic (String newTopic){
-        for(int i = 0; i < this.topics.size(); i++){
-            if(this.topics.get(i).equals(newTopic)){
+    public boolean addNewTopic(String newTopic) {
+        for (String topic : this.topics) {
+            if (topic.equals(newTopic)) {
                 return false;
             }
         }
@@ -142,13 +143,15 @@ public class Forum {
      * @return false, if the topic we want to remove doesn't exist
      * removes the topic and returns true, if we found that topic
      */
-    public boolean removeTopic (String topic){
-        for(int i = 0; i < this.topics.size(); i++){
-            if(this.topics.get(i).equals(topic)){
-                this.topics.remove(i);
+    public boolean removeTopic(String topic) {
+
+        for (String name : this.topics) {
+            if (name.equals(topic)) {
+                this.topics.remove(topic);
                 return true;
             }
         }
+
         return false;
     }
 }
