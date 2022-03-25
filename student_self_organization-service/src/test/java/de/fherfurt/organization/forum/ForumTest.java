@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 class ForumTest {
 
-    Forum createTestForum () {
+    Forum createTestForum() {
         Forum forum = new Forum();
 
         forum.addNewTopic("Allgemeine Fragen");
@@ -26,7 +26,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldRemoveQuestion () {
+    void shouldRemoveQuestion() {
         // given
         Forum forum = createTestForum();
 
@@ -38,7 +38,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotRemoveQuestionDueTitleNotFound () {
+    void shouldNotRemoveQuestionDueTitleNotFound() {
         // given
         Forum forum = createTestForum();
 
@@ -50,7 +50,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotRemoveQuestionDueSize () {
+    void shouldNotRemoveQuestionDueSize() {
         // given
         Forum forum = new Forum();
 
@@ -62,7 +62,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldGetByTopic () {
+    void shouldGetByTopic() {
         // given
         Forum forum = createTestForum();
 
@@ -74,7 +74,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotGetByTopicDueSize () {
+    void shouldNotGetByTopicDueSize() {
         // given
         Forum forum = new Forum();
 
@@ -86,7 +86,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotGetByTopicDueTopicNotFound () {
+    void shouldNotGetByTopicDueTopicNotFound() {
         // given
         Forum forum = createTestForum();
 
@@ -98,7 +98,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldBeTopic () {
+    void shouldBeTopic() {
         // given
         Forum forum = createTestForum();
 
@@ -110,7 +110,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotBeTopic () {
+    void shouldNotBeTopic() {
         // given
         Forum forum = createTestForum();
 
@@ -122,7 +122,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldGetByQuestionTitle () {
+    void shouldGetByQuestionTitle() {
         // given
         Forum forum = createTestForum();
 
@@ -134,7 +134,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotGetByQuestionTitleDueWrongTitle () {
+    void shouldNotGetByQuestionTitleDueWrongTitle() {
         // given
         Forum forum = createTestForum();
 
@@ -146,7 +146,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotGetByQuestionTitleDueNoQuestions () {
+    void shouldNotGetByQuestionTitleDueNoQuestions() {
         // given
         Forum forum = new Forum();
 
@@ -158,7 +158,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldGetByQuestionAuthor () {
+    void shouldGetByQuestionAuthor() {
         // given
         Forum forum = createTestForum();
 
@@ -170,7 +170,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotGetByQuestionAuthorDueWrongAuthor () {
+    void shouldNotGetByQuestionAuthorDueWrongAuthor() {
         // given
         Forum forum = createTestForum();
 
@@ -182,7 +182,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotGetByQuestionAuthorDueNoQuestions () {
+    void shouldNotGetByQuestionAuthorDueNoQuestions() {
         // given
         Forum forum = new Forum();
 
@@ -194,7 +194,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldAddNewTopic () {
+    void shouldAddNewTopic() {
         // given
         Forum forum = createTestForum();
 
@@ -206,7 +206,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotAddNewTopic () {
+    void shouldNotAddNewTopic() {
         // given
         Forum forum = createTestForum();
 
@@ -218,7 +218,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldRemoveTopic () {
+    void shouldRemoveTopic() {
         // given
         Forum forum = createTestForum();
 
@@ -230,7 +230,7 @@ class ForumTest {
     }
 
     @Test
-    void shouldNotRemoveTopic () {
+    void shouldNotRemoveTopic() {
         // given
         Forum forum = createTestForum();
 
