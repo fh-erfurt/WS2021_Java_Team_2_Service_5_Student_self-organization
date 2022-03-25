@@ -1,5 +1,6 @@
 package de.fherfurt.organization.todo;
 
+import de.fherfurt.organization.todo.Todo;
 import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -54,14 +55,17 @@ class TodoTest {
         Assertions.assertThrows(EntryNotFoundException.class,() -> todoRepo.getTaskById(taskTestId));
     }
     @Test
-    void check() {
-        check(2)
-
-        Assertions.assertEquals();
+    void checkTest() throws EntryNotFoundException {
+        Task testTask = secondTask;
+        todoRepo.check(2);
+        Assertions.assertNotEquals(secondTask, testTask);
     }
 
     @Test
-    void unCheck() {
+    void unCheck() throws EntryNotFoundException {
+        Task testTask = firstTask;
+        todoRepo.unCheck(1);
+        Assertions.assertEquals(firstTask, testTask);
     }
 
     /**
