@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Class representing Repository for all Tasks
  *
- * @author Felix Zwicker
+ * @author Tim Eisenberg, Maximilian Keller, Felix Zwicker
  */
 public class Todo {
     private final List<Task> todoList;
@@ -71,7 +71,7 @@ public class Todo {
                 .orElse(null);
 
         if (searchedTask == null) {
-            throw new EntryNotFoundException("Task with ID: " + taskId + " couldnt be found");
+            throw new EntryNotFoundException("Task with ID: " + taskId + " couldn't be found");
         }
         return searchedTask;
     }

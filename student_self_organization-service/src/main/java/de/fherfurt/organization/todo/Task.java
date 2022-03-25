@@ -1,14 +1,12 @@
 package de.fherfurt.organization.todo;
 
-import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
-
 import java.time.LocalDate;
 
 /**
- * Class carries all information of a FAQ-Element
- * Class represents and creates element for FAQ and puts them in the FaqRepository
+ * Class carries all information of a Todo-Task
+ * Class represents and creates element for Todo and puts them in the Todo class
  *
- * @author Felix Zwicker
+ * @author Tim Eisenberg, Maximilian Keller, Felix Zwicker
  */
 public class Task
 {
@@ -69,8 +67,8 @@ public class Task
     }
 
     /**
-     * Class using Builder pattern to help construct an Element of the FAQ
-     * flexible in constructing an Element and easier for future updates
+     * Class using Builder pattern to help construct a Task of the Todo
+     * flexible in constructing a Task and easier for future updates
      */
 
     public static class Builder{
@@ -98,7 +96,7 @@ public class Task
 
 
         /**
-         * allows building Element with self-declared Date
+         * allows building Tasks with self-declared Date
          *
          * @param year - Date year
          * @param month - Date month
@@ -111,9 +109,9 @@ public class Task
         }
 
         /**
-         * builds the object Element
+         * builds the object Task
          *
-         * @return constructed Element
+         * @return constructed Task
          */
         public Task build(){
             return new Task(title,date,isChecked,0,priority);

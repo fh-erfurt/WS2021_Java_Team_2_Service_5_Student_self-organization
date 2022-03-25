@@ -1,6 +1,5 @@
 package de.fherfurt.organization.todo;
 
-import de.fherfurt.organization.todo.*;
 import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
