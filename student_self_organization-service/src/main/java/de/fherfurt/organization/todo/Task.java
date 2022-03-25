@@ -1,27 +1,27 @@
 package de.fherfurt.organization.todo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
+ * Class carries all information of a Todo-Task
+ * Class represents and creates element for Todo and puts them in the Todo class
  *
- *
+ * @author Tim Eisenberg, Maximilian Keller, Felix Zwicker
  */
-
 public class Task
 {
     private String title;
-    private LocalDateTime deadline;
-    private LocalDateTime alarm;
-    private int elementId;
+    private LocalDate date;
     private boolean isChecked;
+    private int taskId;
+    private Priority priority;
 
-    private Task(){}
-    private Task(Builder builder){
-        this.title = builder.title;
-        this.deadline = builder.deadline;
-        this.alarm = builder.alarm;
-        this.elementId = builder.elementId;
-        this.isChecked = builder.isChecked;
+    private Task(String title, LocalDate date, boolean isChecked, int taskId, Priority priority) {
+        this.title = title;
+        this.date = date;
+        this.isChecked = isChecked;
+        this.taskId = taskId;
+        this.priority = priority;
     }
 
     //Setter
@@ -29,20 +29,20 @@ public class Task
         this.title = title;
     }
 
-    public void setDeadline(LocalDateTime deadline){
-        this.deadline = deadline;
+    public void setDate(LocalDate date){
+        this.date = date;
     }
 
-    public void setAlarm(LocalDateTime alarm){
-        this.alarm = alarm;
-    }
-
-    public void setElementId(int elementId){
-        this.elementId = elementId;
-    }
-
-    public void setIsChecked(boolean isChecked) {
+    public void setIsChecked(boolean isChecked){
         this.isChecked = isChecked;
+    }
+
+    public void setTaskId(int taskId){
+        this.taskId = taskId;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     //Getter
@@ -50,57 +50,82 @@ public class Task
         return title;
     }
 
-    public LocalDateTime getDeadline(){
-        return deadline;
-    }
-
-    public LocalDateTime getAlarm() {
-        return alarm;
-    }
-
-    public int getElementId(){
-        return elementId;
+    public LocalDate getDate(){
+        return date;
     }
 
     public boolean getIsChecked(){
         return isChecked;
     }
 
+    public int getTaskId(){
+        return taskId;
+    }
+
+    public Priority getPriority(){
+        return priority;
+    }
+
+    /**
+     * Class using Builder pattern to help construct a Task of the Todo
+     * flexible in constructing a Task and easier for future updates
+     */
+
     public static class Builder{
         private String title;
-        private LocalDateTime deadline;
-        private LocalDateTime alarm;
-        private int elementId;
         private boolean isChecked;
+        private LocalDate date;
+        private Priority priority;
+
         public Builder(){}
         public Builder withTitle(String title){
             this.title = title;
             return this;
         }
-        public Builder withDeadline(LocalDateTime deadline){
-            this.deadline = deadline;
-            return this;
-        }
-        public Builder withAlarm(LocalDateTime alarm){
-            this.alarm = alarm;
-            return this;
-        }
-        public Builder withElementId(int elementId){
-            this.elementId = elementId;
-            return this;
-        }
+
         public Builder withIsChecked(boolean isChecked){
             this.isChecked = isChecked;
             return this;
         }
-        public Task build(){
-            return new Task(this);
+
+        public Builder withPriority(Priority priority){
+            this.priority = priority;
+            return this;
         }
 
+
+
+        /**
+         * allows building Tasks with self-declared Date
+         *
+         * @param year - Date year
+         * @param month - Date month
+         * @param day - Date day
+         */
+
+        public Builder withSelfDeclaredDate(int year, int month, int day){
+            this.date = LocalDate.of(year,month,day);
+            return this;
+        }
+
+        /**
+         * builds the object Task
+         *
+         * @return constructed Task
+         */
+        public Task build(){
+            return new Task(title,date,isChecked,0,priority);
+        }
     }
 
+    /**
+     * converts object to String
+     * overriding toString method makes it easier to operate
+     */
     @Override
     public String toString(){
-        return "task: " +title+", Deadline: "+deadline+", id: "+elementId+ "checked: " + isChecked;
+        return "Title: " +title+", Date: "
+                +date+", Checked: "+isChecked+", id: "+taskId+" Priority: "+priority;
     }
 }
+
