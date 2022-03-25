@@ -10,11 +10,11 @@ import java.util.ArrayList;
  *
  * @author Friedemann Taubert
  */
-public class Forum {
+public class ForumRepository {
     private final ArrayList<String> topics;
     private final ArrayList<Question> questions;
 
-    public Forum() {
+    public ForumRepository() {
         this.topics = new ArrayList<>();
         this.questions = new ArrayList<>();
     }
@@ -31,12 +31,13 @@ public class Forum {
      * deletes the questions and returns true, if we found the title
      */
     public boolean removeQuestion(String title) {
-        for (int i = 0; i < this.questions.size(); i++) {
-            if (this.questions.get(i).getTitle().equals(title)) {
-                this.questions.remove(i);
+        for (Question question : this.questions) {
+            if (question.getTitle().equals(title)) {
+                this.questions.remove(question);
                 return true;
             }
         }
+
         return false;
     }
 
@@ -143,12 +144,14 @@ public class Forum {
      * removes the topic and returns true, if we found that topic
      */
     public boolean removeTopic(String topic) {
-        for (int i = 0; i < this.topics.size(); i++) {
-            if (this.topics.get(i).equals(topic)) {
-                this.topics.remove(i);
+
+        for (String name : this.topics) {
+            if (name.equals(topic)) {
+                this.topics.remove(topic);
                 return true;
             }
         }
+
         return false;
     }
 }
