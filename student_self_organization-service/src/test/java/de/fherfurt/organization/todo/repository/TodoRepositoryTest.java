@@ -1,44 +1,45 @@
-package de.fherfurt.organization.todo;
+package de.fherfurt.organization.todo.repository;
 
-import de.fherfurt.organization.todo.Todo;
 import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
+import de.fherfurt.organization.todo.core.Priority;
+import de.fherfurt.organization.todo.core.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class TodoTest {
-    private Todo todoRepo;
+class TodoRepositoryTest {
+    private TodoRepository todoRepositoryRepo;
     Task firstTask = new Task.Builder().withTitle("Semester Rückmeldung").withSelfDeclaredDate(2022,4, 1 ).withIsChecked(true).withPriority(Priority.IMPORTANT).build();
     Task secondTask = new Task.Builder().withTitle("Bafög").withSelfDeclaredDate(2022,5,3).withIsChecked(false).withPriority(Priority.HIGHLY_IMPORTANT).build();
     Task thirdTask = new Task.Builder().withTitle("Klausuranmeldung").withSelfDeclaredDate(2022,7,12).withIsChecked(false).withPriority(Priority.INSIGNIFICANT).build();
 
     @BeforeEach
     void setupTodo(){
-        todoRepo = new Todo();
-        todoRepo.addTask(firstTask);
-        todoRepo.addTask(secondTask);
-        todoRepo.addTask(thirdTask);
+        todoRepositoryRepo = new TodoRepository();
+        todoRepositoryRepo.addTask(firstTask);
+        todoRepositoryRepo.addTask(secondTask);
+        todoRepositoryRepo.addTask(thirdTask);
     }
 
     @AfterEach
     void deleteTodo(){
-        todoRepo.clearTodoList();
+        todoRepositoryRepo.clearTodoList();
     }
 
     @Test
     void shouldRemoveTask(){
         int taskTestIdToRemove = 3;
 
-        Assertions.assertDoesNotThrow(() -> todoRepo.deleteTaskById(taskTestIdToRemove));
+        Assertions.assertDoesNotThrow(() -> todoRepositoryRepo.deleteTaskById(taskTestIdToRemove));
     }
 
     @Test
     void tryToRemoveNotExistentTask(){
         int taskTestIdToRemove = 4;
 
-        Assertions.assertThrows(EntryNotFoundException.class,() -> todoRepo.deleteTaskById(taskTestIdToRemove));
+        Assertions.assertThrows(EntryNotFoundException.class,() -> todoRepositoryRepo.deleteTaskById(taskTestIdToRemove));
     }
 
     @Test
@@ -52,20 +53,23 @@ class TodoTest {
     void tryToGetNotExistentTask(){
         int taskTestId = 4;
 
-        Assertions.assertThrows(EntryNotFoundException.class,() -> todoRepo.getTaskById(taskTestId));
+        Assertions.assertThrows(EntryNotFoundException.class,() -> todoRepositoryRepo.getTaskById(taskTestId));
     }
+
     @Test
     void checkTest() throws EntryNotFoundException {
-        Task testTask = secondTask;
-        todoRepo.check(2);
-        Assertions.assertNotEquals(secondTask, testTask);
+        Task testTask = new Task.Builder().withTitle("Bafög").withSelfDeclaredDate(2022,5,3).withIsChecked(false).withPriority(Priority.HIGHLY_IMPORTANT).build();
+        todoRepositoryRepo.check(2);
+
+        Assertions.assertNotEquals(todoRepositoryRepo.getTaskById(2), testTask);
     }
 
     @Test
     void unCheck() throws EntryNotFoundException {
-        Task testTask = firstTask;
-        todoRepo.unCheck(1);
-        Assertions.assertEquals(firstTask, testTask);
+        Task testTask = new Task.Builder().withTitle("Semester Rückmeldung").withSelfDeclaredDate(2022,4, 1 ).withIsChecked(true).withPriority(Priority.IMPORTANT).build();
+        todoRepositoryRepo.unCheck(1);
+
+        Assertions.assertNotEquals(firstTask, testTask);
     }
 
     /**
@@ -75,6 +79,6 @@ class TodoTest {
      */
     @Test
     void printTodoListToString(){
-        todoRepo.printTodoList();
+        todoRepositoryRepo.printTodoList();
     }
 }

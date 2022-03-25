@@ -87,7 +87,7 @@ public class FaqRepository {
      * @throws EntryNotFoundException when no object with searched author exists
      * @see EntryNotFoundException
      */
-    public List<Element> getElementsByAuthorUsingIterator(String author) throws EntryNotFoundException {
+    public List<Element> getElementsByAuthor(String author) throws EntryNotFoundException {
         List<Element> sameAuthor = new LinkedList<>();
         for (Element element : faqList) {
             if (element.getAuthor().equals(author)) {

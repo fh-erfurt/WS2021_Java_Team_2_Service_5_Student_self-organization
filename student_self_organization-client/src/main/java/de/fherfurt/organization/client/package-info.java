@@ -1,1 +1,0 @@
-package de.fherfurt.organization.client;
