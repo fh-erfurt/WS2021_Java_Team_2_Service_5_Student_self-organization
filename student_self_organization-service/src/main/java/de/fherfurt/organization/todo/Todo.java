@@ -1,38 +1,100 @@
 package de.fherfurt.organization.todo;
 
+import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
+
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * Class representing Repository for all Tasks
+ *
+ * @author Felix Zwicker
+ */
 public class Todo {
-    private List<Task> todoList;
+    private final List<Task> todoList;
 
-    Todo(){
+    /**
+     * Constructor creating a new LinkedList to save created Tasks
+     */
+    Todo() {
         todoList = new LinkedList<>();
     }
 
-    public void addElement(Task element){
-        todoList.add(element);
+    /**
+     * adds Task to List
+     * creates taskId for Task
+     *
+     * @param task declared Task
+     * @see Task
+     */
+    public void addTask(Task task) {
+        Task lastTaskInList;
+        int lastTaskId;
+
+        //get id from last Task in List and adds 1 to new Task
+        if (todoList.size() != 0) {
+            lastTaskInList = todoList.get(todoList.size() - 1);
+            lastTaskId = lastTaskInList.getTaskId();
+            task.setTaskId(lastTaskId + 1);
+        }
+        //when no object in list, id is set to 1
+        else {
+            task.setTaskId(1);
+        }
+        todoList.add(task);
     }
 
-    public Task searchElement(int elementId) {
-        Task searchedElement = todoList.stream()
-                .filter(Elements -> elementId == Elements.getElementId()).findAny().orElse(null);
-
-        return searchedElement;
+    /**
+     * removes Task from List
+     *
+     * @param taskId ID of Task
+     * @throws EntryNotFoundException when no object with searched ID exists
+     * @see EntryNotFoundException
+     */
+    public void deleteTaskById(int taskId) throws EntryNotFoundException {
+        todoList.remove(getTaskById(taskId));
     }
 
-    public void deleteElement(int elementId){
-        todoList.remove(searchElement(elementId));
+    /**
+     * searches through the list by stream
+     * and returns found Task
+     *
+     * @param taskId ID of searched Task
+     * @return found Task
+     * @throws EntryNotFoundException when no object with searched id exists
+     * @see EntryNotFoundException
+     */
+    public Task getTaskById(int taskId) throws EntryNotFoundException {
+        Task searchedTask = todoList.stream()
+                .filter(Tasks -> taskId == Tasks.getTaskId())
+                .findAny()
+                .orElse(null);
 
+        if (searchedTask == null) {
+            throw new EntryNotFoundException("Task with ID: " + taskId + " couldnt be found");
+        }
+        return searchedTask;
     }
 
-    public void deleteAllElements(){
+    public void check(int taskId) throws EntryNotFoundException {
+        Task task = getTaskById(taskId);
+        task.setIsChecked(true);
+    }
+
+    public void unCheck(int taskId) throws EntryNotFoundException {
+        Task task = getTaskById(taskId);
+        task.setIsChecked(false);
+    }
+
+    public List<Task> getTodoList() {
+        return todoList;
+    }
+
+    public void clearTodoList() {
         todoList.clear();
     }
 
-
-    public void printTodoList(){
+    public void printTodoList() {
         System.out.println(todoList);
     }
 }
