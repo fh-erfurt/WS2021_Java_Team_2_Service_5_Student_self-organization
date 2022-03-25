@@ -10,29 +10,29 @@ import java.util.ArrayList;
  *
  * @author Friedemann Taubert
  */
-class ForumTest {
+class ForumRepositoryTest {
 
-    Forum createTestForum() {
-        Forum forum = new Forum();
+    ForumRepository createTestForum() {
+        ForumRepository forumRepository = new ForumRepository();
 
-        forum.addNewTopic("Allgemeine Fragen");
-        forum.addNewQuestion("Allgemeine Fragen", "Semesterbeginn ?", "Wann ist Semesterbeginn ??", "");
-        forum.addNewQuestion("Allgemeine Fragen", "Weg zum Campus", "Wie komme ich am besten zum Campus Altonaer Straße?", "");
+        forumRepository.addNewTopic("Allgemeine Fragen");
+        forumRepository.addNewQuestion("Allgemeine Fragen", "Semesterbeginn ?", "Wann ist Semesterbeginn ??", "");
+        forumRepository.addNewQuestion("Allgemeine Fragen", "Weg zum Campus", "Wie komme ich am besten zum Campus Altonaer Straße?", "");
 
-        forum.addNewTopic("Präsenz Maßnahmen");
-        forum.addNewQuestion("Präsenz Maßnahmen", "Aktuelle Regeln ?", "Was sind die aktullen Maßnahmen für Präsenz Unterricht ?", "");
+        forumRepository.addNewTopic("Präsenz Maßnahmen");
+        forumRepository.addNewQuestion("Präsenz Maßnahmen", "Aktuelle Regeln ?", "Was sind die aktullen Maßnahmen für Präsenz Unterricht ?", "");
 
-        return forum;
+        return forumRepository;
     }
 
     @Test
     void shouldRemoveQuestion() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String title = "Semesterbeginn ?";
         // when
-        boolean result = forum.removeQuestion(title);
+        boolean result = forumRepository.removeQuestion(title);
         // then
         Assertions.assertThat(result).isTrue();
     }
@@ -40,11 +40,11 @@ class ForumTest {
     @Test
     void shouldNotRemoveQuestionDueTitleNotFound() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String title = "Corona Tests";
         // when
-        boolean result = forum.removeQuestion(title);
+        boolean result = forumRepository.removeQuestion(title);
         // then
         Assertions.assertThat(result).isFalse();
     }
@@ -52,11 +52,11 @@ class ForumTest {
     @Test
     void shouldNotRemoveQuestionDueSize() {
         // given
-        Forum forum = new Forum();
+        ForumRepository forumRepository = new ForumRepository();
 
         String title = "Corona Tests";
         // when
-        boolean result = forum.removeQuestion(title);
+        boolean result = forumRepository.removeQuestion(title);
         // then
         Assertions.assertThat(result).isFalse();
     }
@@ -64,11 +64,11 @@ class ForumTest {
     @Test
     void shouldGetByTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Allgemeine Fragen";
         // when
-        ArrayList<Question> result = forum.getByTopic(topic);
+        ArrayList<Question> result = forumRepository.getByTopic(topic);
         // then
         Assertions.assertThat(result.size()).isEqualTo(2);
     }
@@ -76,11 +76,11 @@ class ForumTest {
     @Test
     void shouldNotGetByTopicDueSize() {
         // given
-        Forum forum = new Forum();
+        ForumRepository forumRepository = new ForumRepository();
 
         String topic = "Allgemeine Fragen";
         // when
-        ArrayList<Question> result = forum.getByTopic(topic);
+        ArrayList<Question> result = forumRepository.getByTopic(topic);
         // then
         Assertions.assertThat(result.size()).isEqualTo(0);
     }
@@ -88,11 +88,11 @@ class ForumTest {
     @Test
     void shouldNotGetByTopicDueTopicNotFound() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Corona";
         // when
-        ArrayList<Question> result = forum.getByTopic(topic);
+        ArrayList<Question> result = forumRepository.getByTopic(topic);
         // then
         Assertions.assertThat(result.size()).isEqualTo(0);
     }
@@ -100,11 +100,11 @@ class ForumTest {
     @Test
     void shouldBeTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Allgemeine Fragen";
         // when
-        boolean result = forum.isTopic(topic);
+        boolean result = forumRepository.isTopic(topic);
         // then
         Assertions.assertThat(result).isTrue();
     }
@@ -112,11 +112,11 @@ class ForumTest {
     @Test
     void shouldNotBeTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Corona";
         // when
-        boolean result = forum.isTopic(topic);
+        boolean result = forumRepository.isTopic(topic);
         // then
         Assertions.assertThat(result).isFalse();
     }
@@ -124,11 +124,11 @@ class ForumTest {
     @Test
     void shouldGetByQuestionTitle() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String title = "Aktuelle Regeln ?";
         // when
-        ArrayList<Question> result = forum.getByQuestionTitle(title);
+        ArrayList<Question> result = forumRepository.getByQuestionTitle(title);
         // then
         Assertions.assertThat(result.size()).isEqualTo(1);
     }
@@ -136,11 +136,11 @@ class ForumTest {
     @Test
     void shouldNotGetByQuestionTitleDueWrongTitle() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String title = "Impfpflicht";
         // when
-        ArrayList<Question> result = forum.getByQuestionTitle(title);
+        ArrayList<Question> result = forumRepository.getByQuestionTitle(title);
         // then
         Assertions.assertThat(result.size()).isEqualTo(0);
     }
@@ -148,11 +148,11 @@ class ForumTest {
     @Test
     void shouldNotGetByQuestionTitleDueNoQuestions() {
         // given
-        Forum forum = new Forum();
+        ForumRepository forumRepository = new ForumRepository();
 
         String title = "Aktuelle Regeln ?";
         // when
-        ArrayList<Question> result = forum.getByQuestionTitle(title);
+        ArrayList<Question> result = forumRepository.getByQuestionTitle(title);
         // then
         Assertions.assertThat(result.size()).isEqualTo(0);
     }
@@ -160,11 +160,11 @@ class ForumTest {
     @Test
     void shouldGetByQuestionAuthor() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String author = "";
         // when
-        ArrayList<Question> result = forum.getByQuestionAuthor(author);
+        ArrayList<Question> result = forumRepository.getByQuestionAuthor(author);
         // then
         Assertions.assertThat(result.size()).isEqualTo(3);
     }
@@ -172,11 +172,11 @@ class ForumTest {
     @Test
     void shouldNotGetByQuestionAuthorDueWrongAuthor() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String author = "Herr Vorragend";
         // when
-        ArrayList<Question> result = forum.getByQuestionAuthor(author);
+        ArrayList<Question> result = forumRepository.getByQuestionAuthor(author);
         // then
         Assertions.assertThat(result.size()).isEqualTo(0);
     }
@@ -184,11 +184,11 @@ class ForumTest {
     @Test
     void shouldNotGetByQuestionAuthorDueNoQuestions() {
         // given
-        Forum forum = new Forum();
+        ForumRepository forumRepository = new ForumRepository();
 
         String author = "";
         // when
-        ArrayList<Question> result = forum.getByQuestionAuthor(author);
+        ArrayList<Question> result = forumRepository.getByQuestionAuthor(author);
         // then
         Assertions.assertThat(result.size()).isEqualTo(0);
     }
@@ -196,11 +196,11 @@ class ForumTest {
     @Test
     void shouldAddNewTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Mensa";
         // when
-        boolean result = forum.addNewTopic(topic);
+        boolean result = forumRepository.addNewTopic(topic);
         // then
         Assertions.assertThat(result).isTrue();
     }
@@ -208,11 +208,11 @@ class ForumTest {
     @Test
     void shouldNotAddNewTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Allgemeine Fragen";
         // when
-        boolean result = forum.addNewTopic(topic);
+        boolean result = forumRepository.addNewTopic(topic);
         // then
         Assertions.assertThat(result).isFalse();
     }
@@ -220,11 +220,11 @@ class ForumTest {
     @Test
     void shouldRemoveTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Allgemeine Fragen";
         // when
-        boolean result = forum.removeTopic(topic);
+        boolean result = forumRepository.removeTopic(topic);
         // then
         Assertions.assertThat(result).isTrue();
     }
@@ -232,11 +232,11 @@ class ForumTest {
     @Test
     void shouldNotRemoveTopic() {
         // given
-        Forum forum = createTestForum();
+        ForumRepository forumRepository = createTestForum();
 
         String topic = "Mensa";
         // when
-        boolean result = forum.removeTopic(topic);
+        boolean result = forumRepository.removeTopic(topic);
         // then
         Assertions.assertThat(result).isFalse();
     }
