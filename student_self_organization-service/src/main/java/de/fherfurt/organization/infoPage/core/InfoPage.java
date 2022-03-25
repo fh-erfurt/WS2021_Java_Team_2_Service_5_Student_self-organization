@@ -1,4 +1,4 @@
-package de.fherfurt.organization.infoPage;
+package de.fherfurt.organization.infoPage.core;
 
 import de.fherfurt.persons.client.Person;
 
@@ -14,7 +14,7 @@ public class InfoPage {
     private String content;
     private List<Person> personList;
 
-    InfoPage(String header, String content, List<Person> personList){
+    public InfoPage(String header, String content, List<Person> personList){
         this.header = header;
         this.content = content;
         this.personList = personList;

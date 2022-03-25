@@ -65,15 +65,15 @@ class FaqRepositoryTest {
         String searchedTestAuthor = "Felix Zwicker";
         int expectedSizeOfFoundElements = 2;
 
-        Assertions.assertDoesNotThrow(() -> faqRepo.getElementsByAuthorUsingIterator(searchedTestAuthor));
-        Assertions.assertEquals(expectedSizeOfFoundElements ,faqRepo.getElementsByAuthorUsingIterator(searchedTestAuthor).size());
+        Assertions.assertDoesNotThrow(() -> faqRepo.getElementsByAuthor(searchedTestAuthor));
+        Assertions.assertEquals(expectedSizeOfFoundElements ,faqRepo.getElementsByAuthor(searchedTestAuthor).size());
     }
 
     @Test
     void tryToGetFaqElementsWithNotExistentAuthor(){
         String searchedTestAuthor = "Silke Musterfrau";
 
-        Assertions.assertThrows(EntryNotFoundException.class,() -> faqRepo.getElementsByAuthorUsingIterator(searchedTestAuthor));
+        Assertions.assertThrows(EntryNotFoundException.class,() -> faqRepo.getElementsByAuthor(searchedTestAuthor));
     }
 
     @Test

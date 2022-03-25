@@ -1,4 +1,4 @@
-package de.fherfurt.organization.forum;
+package de.fherfurt.organization.forum.core;
 
 import java.util.ArrayList;
 

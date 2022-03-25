@@ -1,4 +1,4 @@
-package de.fherfurt.organization.infoPage;
+package de.fherfurt.organization.infoPage.repository;
 
 import de.fherfurt.persons.client.DevPerson;
 import de.fherfurt.persons.client.Person;

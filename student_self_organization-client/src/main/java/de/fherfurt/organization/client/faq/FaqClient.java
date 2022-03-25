@@ -1,10 +1,10 @@
 package de.fherfurt.organization.client.faq;
 
-import javax.lang.model.element.Element;
 import java.util.List;
+import java.util.Optional;
 
 /**
- * This Interface provides functionality from Faq Service.
+ * This Interface provides functionality from Faq Service
  * It could be used by other services
  *
  * @author Felix Zwicker
@@ -18,7 +18,7 @@ public interface FaqClient {
      * @param elementId - needed for searching
      * @return Element - with all its values
      */
-    Element getElementById(int elementId);
+    Optional getElementById(int elementId);
 
     /**
      * This Methode could return
@@ -27,5 +27,5 @@ public interface FaqClient {
      *
      * @return LinkedList - containing Elements
      */
-    List<Element> getFaqList();
+    List<Optional> getFaqList();
 }

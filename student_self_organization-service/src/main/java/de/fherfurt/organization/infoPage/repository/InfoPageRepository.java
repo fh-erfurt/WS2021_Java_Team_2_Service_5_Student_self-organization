@@ -1,5 +1,6 @@
-package de.fherfurt.organization.infoPage;
+package de.fherfurt.organization.infoPage.repository;
 
+import de.fherfurt.organization.infoPage.core.InfoPage;
 import de.fherfurt.persons.client.Person;
 
 import java.util.LinkedList;
@@ -14,7 +15,7 @@ public class InfoPageRepository {
     private final InfoPage infoPage;
     private List<Person> personsList;
 
-    InfoPageRepository() {
+    public InfoPageRepository() {
         personsList = new LinkedList<>();
         //currently, only one InfoPage is needed
         //therefore it is declared directly

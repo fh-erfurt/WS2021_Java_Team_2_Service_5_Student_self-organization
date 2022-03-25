@@ -1,6 +1,7 @@
-package de.fherfurt.organization.todo;
+package de.fherfurt.organization.todo.repository;
 
 import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
+import de.fherfurt.organization.todo.core.Task;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,13 +11,13 @@ import java.util.List;
  *
  * @author Tim Eisenberg, Maximilian Keller, Felix Zwicker
  */
-public class Todo {
+public class TodoRepository {
     private final List<Task> todoList;
 
     /**
      * Constructor creating a new LinkedList to save created Tasks
      */
-    Todo() {
+    public TodoRepository() {
         todoList = new LinkedList<>();
     }
 

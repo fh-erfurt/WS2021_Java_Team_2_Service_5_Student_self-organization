@@ -1,4 +1,4 @@
-package de.fherfurt.organization.forum;
+package de.fherfurt.organization.forum.core;
 
 /**
  * is a data container for a basic message

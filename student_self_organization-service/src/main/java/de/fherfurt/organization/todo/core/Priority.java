@@ -1,4 +1,4 @@
-package de.fherfurt.organization.todo;
+package de.fherfurt.organization.todo.core;
 
 /**
  * Enum for Priority
