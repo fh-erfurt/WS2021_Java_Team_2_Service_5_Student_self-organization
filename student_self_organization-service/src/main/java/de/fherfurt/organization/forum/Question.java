@@ -29,12 +29,12 @@ public class Question {
      * @return if the remove was success
      */
     public boolean removeAnswer (String title){
-        for(int i = 0; i < this.answers.size(); i++){
-            if(this.answers.get(i).getTitle().equals(title)){
-                this.answers.remove(i);
+        for (Answer element : this.answers) {
+            if(element.getTitle().equals(title)) {
                 return true;
             }
         }
+        
         return false;
     }
 
