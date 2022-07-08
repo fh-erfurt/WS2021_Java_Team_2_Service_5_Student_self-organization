@@ -1,5 +1,6 @@
-package de.fherfurt.organization.forum;
+package de.fherfurt.organization.forum.repository;
 
+import de.fherfurt.organization.forum.core.Question;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

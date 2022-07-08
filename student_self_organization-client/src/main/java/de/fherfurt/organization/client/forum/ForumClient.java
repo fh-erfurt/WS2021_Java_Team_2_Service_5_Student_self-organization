@@ -1,6 +1,6 @@
 package de.fherfurt.organization.client.forum;
 
-import de.fherfurt.organization.forum.Question;
+import de.fherfurt.organization.forum.core.Question;
 
 import java.util.ArrayList;
 
