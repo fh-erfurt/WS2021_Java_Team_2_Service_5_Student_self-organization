@@ -24,6 +24,7 @@ public class Element
         this.elementId = elementId;
     }
 
+
     //Setter
     public void setTitle(String title){
         this.title = title;
