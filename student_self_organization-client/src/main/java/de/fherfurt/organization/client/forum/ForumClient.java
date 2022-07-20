@@ -1,7 +1,8 @@
 package de.fherfurt.organization.client.forum;
 
+import de.fherfurt.organization.forum.core.Question;
+
 import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * This Interface provides Forum questions from a certain topic
@@ -18,5 +19,5 @@ public interface ForumClient {
      * @param topic - needed for searching
      * @return ArrayList<Question> - with all its questions from the topic
      */
-    ArrayList<Optional> getByTopic(String topic);
+    ArrayList<Question> getByTopic (String topic);
 }
