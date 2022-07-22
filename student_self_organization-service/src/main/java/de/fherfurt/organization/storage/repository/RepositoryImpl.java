@@ -21,61 +21,48 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
     }
 
     /*
-        Answer Repository Implementation
+        Forum Repository Implementation
     */
 
     @Override
-    public List<Answer> getAllAnswers() {
-        return new ArrayList<>( this.answerDao.findAll() );
+    public boolean addNewQuestion(Question question) {
+        return this.questionDao.create( question );
     }
 
     @Override
-    public Answer getAnswer(int answerId) {
-        return this.answerDao.findById( answerId );
+    public boolean removeQuestion(int questionId) {
+        return this.questionDao.delete( questionId );
     }
 
     @Override
-    public boolean createAnswer(Answer answer) {
-        return this.answerDao.create( answer );
+    public List<Question> getQuestionsByTopic(String topic) {
+        return this.questionDao.getQuestionsByTopic( topic );
     }
 
     @Override
-    public boolean updateAnswer(Answer answer) {
-        return this.answerDao.update( answer ) == answer;
+    public List<Question> getQuestionsByTitle(String title) {
+        return this.questionDao.getQuestionsByTitle( title );
     }
 
     @Override
-    public boolean deleteAnswer(int answerId) {
-        return this.answerDao.delete( answerId );
-    }
-
-    /*
-        Message Repository Implementation
-     */
-
-    @Override
-    public List<Message> getAllMessages() {
-        return new ArrayList<>( this.messageDao.findAll() );
+    public List<Question> getQuestionsByAuthor(String author) {
+        return this.questionDao.getQuestionsByAuthor( author );
     }
 
     @Override
-    public Message getMessage(int messageId) {
-        return this.messageDao.findById( messageId );
+    public boolean addNewAnswerToQuestion(int questionId, Answer answer) {
+        this.questionDao.findById( questionId ).addAnswer( answer );
+        return true;
     }
 
     @Override
-    public boolean createMessage(Message message) {
-        return this.messageDao.create( message );
+    public boolean addNewTopic(String newTopic) {
+        return topicDao.create( new Topic( newTopic ));
     }
 
     @Override
-    public boolean updateMessage(Message message) {
-        return this.messageDao.update( message ) == message;
-    }
-
-    @Override
-    public boolean deleteMessage(int messageId) {
-        return this.messageDao.delete( messageId );
+    public boolean removeTopic(int topicId) {
+        return topicDao.delete(topicId);
     }
 
     /*
