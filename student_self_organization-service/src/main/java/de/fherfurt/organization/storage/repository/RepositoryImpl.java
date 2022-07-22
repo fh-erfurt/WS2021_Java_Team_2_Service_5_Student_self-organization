@@ -1,23 +1,23 @@
 package de.fherfurt.organization.storage.repository;
 
-import de.fherfurt.organization.forum.core.Answer;
-import de.fherfurt.organization.forum.core.Message;
-import de.fherfurt.organization.forum.core.Question;
+import de.fherfurt.organization.forum.core.*;
 import de.fherfurt.organization.storage.core.IGenericDao;
+import de.fherfurt.organization.storage.core.QuestionDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository{
+public class RepositoryImpl implements ForumRepository {
 
     private final IGenericDao<Message> messageDao;
     private final IGenericDao<Answer> answerDao;
-    private final IGenericDao<Question> questionDao;
+    private final QuestionDao questionDao;
+    private final IGenericDao<Topic> topicDao;
 
-    public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, IGenericDao<Question> questionDao) {
+    public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, QuestionDao questionDao, IGenericDao<Topic> topicDao) {
         this.messageDao = messageDao;
         this.answerDao = answerDao;
         this.questionDao = questionDao;
+        this.topicDao = topicDao;
     }
 
     /*
@@ -30,8 +30,18 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
     }
 
     @Override
+    public Question getQuestionById( int questionId ) {
+        return this.questionDao.findById( questionId );
+    }
+
+    @Override
     public boolean removeQuestion(int questionId) {
         return this.questionDao.delete( questionId );
+    }
+
+    @Override
+    public List<Question> getAllQuestions() {
+        return (List<Question>) this.questionDao.findAll();
     }
 
     @Override
@@ -56,6 +66,16 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
     }
 
     @Override
+    public List<Answer> getAnswersFromQuestion( int questionId ) {
+        return this.questionDao.getAnswersFromQuestion( questionId );
+    }
+
+    @Override
+    public List<Topic> getAllTopics() {
+        return (List<Topic>) topicDao.findAll();
+    }
+
+    @Override
     public boolean addNewTopic(String newTopic) {
         return topicDao.create( new Topic( newTopic ));
     }
@@ -65,32 +85,5 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
         return topicDao.delete(topicId);
     }
 
-    /*
-        Question Repository Implementation
-     */
 
-    @Override
-    public List<Question> getAllQuestions() {
-        return new ArrayList<>( this.questionDao.findAll() );
-    }
-
-    @Override
-    public Question getQuestion(int questionId) {
-        return this.questionDao.findById( questionId );
-    }
-
-    @Override
-    public boolean createQuestion(Question question) {
-        return this.questionDao.create( question );
-    }
-
-    @Override
-    public boolean updateQuestion(Question question) {
-        return this.questionDao.update( question ) == question;
-    }
-
-    @Override
-    public boolean deleteQuestion(int questionId) {
-        return this.questionDao.delete( questionId );
-    }
 }
