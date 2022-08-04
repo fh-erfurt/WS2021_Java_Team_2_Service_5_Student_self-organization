@@ -2,8 +2,10 @@ package de.fherfurt.organization.storage.core;
 
 import de.fherfurt.organization.forum.core.Answer;
 import de.fherfurt.organization.forum.core.Message;
-import de.fherfurt.organization.forum.core.Topic;
-import de.fherfurt.organization.storage.repository.ForumRepository;
+import de.fherfurt.organization.forum.core.Question;
+import de.fherfurt.organization.storage.repository.AnswerRepository;
+import de.fherfurt.organization.storage.repository.MessageRepository;
+import de.fherfurt.organization.storage.repository.QuestionRepository;
 import de.fherfurt.organization.storage.repository.RepositoryImpl;
 
 import javax.persistence.EntityManagerFactory;
@@ -27,12 +29,20 @@ public class RepositoryFactory {
     private RepositoryFactory() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory( PERSISTENCE_UNIT_NAME );
 
-        this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao(), this.getTopicDao() );
+        this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao() );
 
         // TODO: ADD TEST DATA
     }
 
-    public ForumRepository getForumRepository() {
+    public MessageRepository getMessageRepository() {
+        return this.repository;
+    }
+
+    public AnswerRepository getAnswerRepository() {
+        return this.repository;
+    }
+
+    public QuestionRepository getQuestionRepository() {
         return this.repository;
     }
 
@@ -46,12 +56,8 @@ public class RepositoryFactory {
                 this.entityManagerFactory.createEntityManager() );
     }
 
-    public QuestionDao getQuestionDao() {
-        return new JpaQuestionDao( this.entityManagerFactory.createEntityManager() );
-    }
-
-    public IGenericDao<Topic> getTopicDao() {
-        return new JpaGenericDao<>( Topic.class,
+    public IGenericDao<Question> getQuestionDao() {
+        return new JpaGenericDao<>( Question.class,
                 this.entityManagerFactory.createEntityManager() );
     }
 }
