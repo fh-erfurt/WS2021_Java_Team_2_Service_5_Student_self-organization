@@ -1,5 +1,7 @@
 package de.fherfurt.organization.client.faq;
 
+import de.fherfurt.organization.client.faq.objects.FaqDto;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,14 +20,10 @@ public interface FaqClient {
      * @param elementId - needed for searching
      * @return Element - with all its values
      */
-    Optional getElementById(int elementId);
+    Optional<FaqDto> getElementById(int elementId);
 
-    /**
-     * This Methode could return
-     * the FaqList with all created
-     * Elements to use in other Services
-     *
-     * @return LinkedList - containing Elements
-     */
-    List<Optional> getFaqList();
+    List<FaqDto> getElementsByTitle(String title);
+
+    List<FaqDto> getElementsByAuthor(String author);
+
 }

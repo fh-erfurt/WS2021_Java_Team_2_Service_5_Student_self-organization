@@ -25,4 +25,9 @@ public class BaseResource {
     public QuestionResource getQuestionResource() {
         return new QuestionResource();
     }
+
+    @Path("/faq")
+    public FaqResource getFaqResource(){
+        return new FaqResource();
+    }
 }
