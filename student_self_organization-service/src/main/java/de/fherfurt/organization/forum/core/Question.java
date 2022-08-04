@@ -29,8 +29,8 @@ public class Question extends AbstractDatabaseEntity {
         this.answers = new ArrayList<>();
     }
 
-    public void addAnswer (String title, String text, String author){
-        this.answers.add(new Answer(title, text, author));
+    public void addAnswer (Answer answer){
+        this.answers.add(answer);
     }
 
     /**
