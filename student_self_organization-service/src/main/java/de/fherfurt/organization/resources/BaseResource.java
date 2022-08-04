@@ -11,18 +11,10 @@ public class BaseResource {
         return "Hello from Base Resource";
     }
 
-    @Path("/messages")
-    public MessageResource getMessageResource() {
-        return new MessageResource();
+    @Path("/forum")
+    public ForumResource getForumResource() {
+        return new ForumResource();
     }
 
-    @Path("/answers")
-    public AnswerResource getAnswerResource() {
-        return new AnswerResource();
-    }
 
-    @Path("/questions")
-    public QuestionResource getQuestionResource() {
-        return new QuestionResource();
-    }
 }
