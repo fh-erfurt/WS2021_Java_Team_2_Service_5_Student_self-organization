@@ -1,7 +1,5 @@
 package de.fherfurt.organization.resources;
 
-import de.fherfurt.organization.forum.core.Topic;
-import de.fherfurt.organization.storage.repository.ForumRepository;
 import de.fherfurt.organization.storage.core.RepositoryFactory;
 import de.fherfurt.organization.forum.core.Question;
 import de.fherfurt.organization.forum.core.Answer;
