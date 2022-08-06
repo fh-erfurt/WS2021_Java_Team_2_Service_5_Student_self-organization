@@ -1,4 +1,4 @@
-package de.fherfurt.organization.faq.core.errors;
+package de.fherfurt.organization.errors;
 
 /**
  * Basic exception to catch errors

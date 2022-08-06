@@ -1,6 +1,6 @@
 package de.fherfurt.organization.todo.repository;
 
-import de.fherfurt.organization.faq.core.errors.EntryNotFoundException;
+import de.fherfurt.organization.errors.EntryNotFoundException;
 import de.fherfurt.organization.todo.core.Priority;
 import de.fherfurt.organization.todo.core.Task;
 import org.junit.jupiter.api.AfterEach;

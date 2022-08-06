@@ -1,7 +1,6 @@
-package de.fherfurt.organization.faq.core;
+package de.fherfurt.organization.storage.core;
 
-import de.fherfurt.organization.faq.model.Element;
-import de.fherfurt.organization.storage.core.JpaGenericDao;
+import de.fherfurt.organization.models.Element;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -11,11 +10,6 @@ public class JpaFaqDao extends JpaGenericDao<Element> implements IFaqDao {
 
     public JpaFaqDao(EntityManager entityManager){
         super(Element.class, entityManager);
-    }
-
-    @Override
-    public Element findElementById(int id){
-        return this.findById(id);
     }
 
     @Override

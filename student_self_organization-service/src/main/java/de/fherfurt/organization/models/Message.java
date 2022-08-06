@@ -1,4 +1,4 @@
-package de.fherfurt.organization.forum.core;
+package de.fherfurt.organization.models;
 
 import de.fherfurt.organization.storage.core.AbstractDatabaseEntity;
 

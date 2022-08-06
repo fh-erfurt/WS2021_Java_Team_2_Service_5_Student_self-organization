@@ -1,4 +1,4 @@
-package de.fherfurt.organization.faq.model;
+package de.fherfurt.organization.models;
 
 
 import de.fherfurt.organization.storage.core.AbstractDatabaseEntity;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 /**
  * Class carries all information of a FAQ-Element

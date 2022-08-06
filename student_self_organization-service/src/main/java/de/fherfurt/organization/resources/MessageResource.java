@@ -1,6 +1,6 @@
 package de.fherfurt.organization.resources;
 
-import de.fherfurt.organization.forum.core.Message;
+import de.fherfurt.organization.models.Message;
 import de.fherfurt.organization.storage.core.RepositoryFactory;
 import de.fherfurt.organization.storage.repository.MessageRepository;
 import jakarta.ws.rs.*;
