@@ -1,8 +1,8 @@
 package de.fherfurt.organization.resources;
 
-import de.fherfurt.organization.faq.model.Element;
-import de.fherfurt.organization.faq.repository.FaqRepositioryFactory;
-import de.fherfurt.organization.faq.repository.IFaqRepositiory;
+import de.fherfurt.organization.models.Element;
+import de.fherfurt.organization.storage.core.RepositoryFactory;
+import de.fherfurt.organization.storage.repository.IFaqRepositiory;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -14,7 +14,7 @@ public class FaqResource {
     private final IFaqRepositiory faqRepository;
 
     public FaqResource() {
-        this.faqRepository = FaqRepositioryFactory.getInstance().getFaqRepository();
+        this.faqRepository = RepositoryFactory.getInstance().getFaqRepository();
     }
 
     @GET

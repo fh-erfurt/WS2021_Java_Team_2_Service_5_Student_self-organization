@@ -1,12 +1,10 @@
 package de.fherfurt.organization.storage.core;
 
-import de.fherfurt.organization.forum.core.Answer;
-import de.fherfurt.organization.forum.core.Message;
-import de.fherfurt.organization.forum.core.Question;
-import de.fherfurt.organization.storage.repository.AnswerRepository;
-import de.fherfurt.organization.storage.repository.MessageRepository;
-import de.fherfurt.organization.storage.repository.QuestionRepository;
-import de.fherfurt.organization.storage.repository.RepositoryImpl;
+import de.fherfurt.organization.models.Answer;
+import de.fherfurt.organization.models.Element;
+import de.fherfurt.organization.models.Message;
+import de.fherfurt.organization.models.Question;
+import de.fherfurt.organization.storage.repository.*;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -29,10 +27,14 @@ public class RepositoryFactory {
     private RepositoryFactory() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory( PERSISTENCE_UNIT_NAME );
 
-        this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao() );
+        this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao(), this.getElementDao(), this.getFaqDao() );
 
         // TODO: ADD TEST DATA
     }
+
+    /*
+        Repo Getter
+     */
 
     public MessageRepository getMessageRepository() {
         return this.repository;
@@ -45,6 +47,14 @@ public class RepositoryFactory {
     public QuestionRepository getQuestionRepository() {
         return this.repository;
     }
+
+    public IFaqRepositiory getFaqRepository(){
+        return this.repository;
+    }
+
+    /*
+        Dao Getter
+     */
 
     public IGenericDao<Message> getMessageDao() {
         return new JpaGenericDao<>( Message.class,
@@ -59,5 +69,14 @@ public class RepositoryFactory {
     public IGenericDao<Question> getQuestionDao() {
         return new JpaGenericDao<>( Question.class,
                 this.entityManagerFactory.createEntityManager() );
+    }
+
+    public IFaqDao getFaqDao(){
+        return new JpaFaqDao(this.entityManagerFactory.createEntityManager());
+    }
+
+    public IGenericDao<Element> getElementDao() {
+        return new JpaGenericDao<>(Element.class,
+                this.entityManagerFactory.createEntityManager());
     }
 }

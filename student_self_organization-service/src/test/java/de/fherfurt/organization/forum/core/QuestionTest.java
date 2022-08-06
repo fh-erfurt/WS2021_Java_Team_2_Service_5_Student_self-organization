@@ -1,5 +1,7 @@
 package de.fherfurt.organization.forum.core;
 
+import de.fherfurt.organization.models.Answer;
+import de.fherfurt.organization.models.Question;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +15,7 @@ class QuestionTest {
     Question createTestQuestion () {
         Question question = new Question("Allgemeine Fragen", "Allgemeine Fragen", "Wann ist Semesterbeginn ??", "");
 
-        question.addAnswer(new Answer("Studienbeginn", "Studienbeginn ist 4.4.2022", "Herr Vorragend"));
+        question.addAnswer("Studienbeginn", "Studienbeginn ist 4.4.2022", "Herr Vorragend");
 
         return question;
     }

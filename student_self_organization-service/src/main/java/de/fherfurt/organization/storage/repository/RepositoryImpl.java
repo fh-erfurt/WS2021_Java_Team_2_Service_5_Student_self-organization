@@ -1,23 +1,30 @@
 package de.fherfurt.organization.storage.repository;
 
-import de.fherfurt.organization.forum.core.Answer;
-import de.fherfurt.organization.forum.core.Message;
-import de.fherfurt.organization.forum.core.Question;
+import de.fherfurt.organization.models.Answer;
+import de.fherfurt.organization.models.Element;
+import de.fherfurt.organization.models.Message;
+import de.fherfurt.organization.models.Question;
+import de.fherfurt.organization.storage.core.IFaqDao;
 import de.fherfurt.organization.storage.core.IGenericDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository{
+public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository, IFaqRepositiory{
 
     private final IGenericDao<Message> messageDao;
     private final IGenericDao<Answer> answerDao;
     private final IGenericDao<Question> questionDao;
+    private final IGenericDao<Element> elementDao;
 
-    public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, IGenericDao<Question> questionDao) {
+    private final IFaqDao faqDao;
+
+    public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, IGenericDao<Question> questionDao, IGenericDao<Element> elementDao, IFaqDao faqDao) {
         this.messageDao = messageDao;
         this.answerDao = answerDao;
         this.questionDao = questionDao;
+        this.elementDao = elementDao;
+        this.faqDao = faqDao;
     }
 
     /*
@@ -105,5 +112,45 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
     @Override
     public boolean deleteQuestion(int questionId) {
         return this.questionDao.delete( questionId );
+    }
+
+    /*
+        Faq Repository Implementation
+     */
+
+    @Override
+    public boolean createElement(Element element) {
+        return this.elementDao.create(element);
+    }
+
+    @Override
+    public Element getElementById(int elementId) {
+        return this.elementDao.findById(elementId);
+    }
+
+    @Override
+    public List<Element> getElementsByTitle(String title) {
+        return this.faqDao.findElementByTitle(title);
+    }
+
+    @Override
+    public List<Element> getElementsByAuthor(String author) {
+        return this.faqDao.findElementByAuthor(author);
+    }
+
+    @Override
+    public boolean updateElementById(Element element) {
+        this.elementDao.update(element);
+        return getElementById(element.getId()).equals(element);
+    }
+
+    @Override
+    public boolean deleteElementById(int elementId) {
+        return this.elementDao.delete(elementId);
+    }
+
+    @Override
+    public List<Element> getAllElements() {
+        return new ArrayList<>(this.elementDao.findAll());
     }
 }
