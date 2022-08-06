@@ -1,4 +1,4 @@
-package de.fherfurt.organization.models;
+package de.fherfurt.organization.core.models;
 
 
 import de.fherfurt.organization.storage.core.AbstractDatabaseEntity;

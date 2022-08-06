@@ -1,6 +1,6 @@
 package de.fherfurt.organization.resources;
 
-import de.fherfurt.organization.models.Element;
+import de.fherfurt.organization.core.models.Element;
 import de.fherfurt.organization.storage.core.RepositoryFactory;
 import de.fherfurt.organization.storage.repository.IFaqRepositiory;
 import jakarta.ws.rs.*;

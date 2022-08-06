@@ -1,6 +1,6 @@
 package de.fherfurt.organization.storage.repository;
 
-import de.fherfurt.organization.models.Answer;
+import de.fherfurt.organization.core.models.Answer;
 
 import java.util.List;
 

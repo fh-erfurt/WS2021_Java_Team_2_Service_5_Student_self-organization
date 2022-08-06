@@ -1,6 +1,9 @@
-package de.fherfurt.organization.todo.core;
+package de.fherfurt.organization.core.models;
 
-import java.time.LocalDate;
+import de.fherfurt.organization.storage.core.AbstractDatabaseEntity;
+import de.fherfurt.organization.core.enums.Priority;
+
+import javax.persistence.Entity;
 
 /**
  * Class carries all information of a Todo-Task
@@ -8,19 +11,18 @@ import java.time.LocalDate;
  *
  * @author Tim Eisenberg, Maximilian Keller, Felix Zwicker
  */
-public class Task
+@Entity
+public class Task extends AbstractDatabaseEntity//StorageEntity
 {
+    public Task() {}
     private String title;
-    private LocalDate date;
+
     private boolean isChecked;
-    private int taskId;
     private Priority priority;
 
-    private Task(String title, LocalDate date, boolean isChecked, int taskId, Priority priority) {
+    private Task(String title, boolean isChecked, Priority priority) {
         this.title = title;
-        this.date = date;
         this.isChecked = isChecked;
-        this.taskId = taskId;
         this.priority = priority;
     }
 
@@ -29,17 +31,11 @@ public class Task
         this.title = title;
     }
 
-    public void setDate(LocalDate date){
-        this.date = date;
-    }
 
     public void setIsChecked(boolean isChecked){
         this.isChecked = isChecked;
     }
 
-    public void setTaskId(int taskId){
-        this.taskId = taskId;
-    }
 
     public void setPriority(Priority priority) {
         this.priority = priority;
@@ -50,16 +46,8 @@ public class Task
         return title;
     }
 
-    public LocalDate getDate(){
-        return date;
-    }
-
     public boolean getIsChecked(){
         return isChecked;
-    }
-
-    public int getTaskId(){
-        return taskId;
     }
 
     public Priority getPriority(){
@@ -74,7 +62,6 @@ public class Task
     public static class Builder{
         private String title;
         private boolean isChecked;
-        private LocalDate date;
         private Priority priority;
 
         public Builder(){}
@@ -93,28 +80,13 @@ public class Task
             return this;
         }
 
-
-
-        /**
-         * allows building Tasks with self-declared Date
-         *
-         * @param year - Date year
-         * @param month - Date month
-         * @param day - Date day
-         */
-
-        public Builder withSelfDeclaredDate(int year, int month, int day){
-            this.date = LocalDate.of(year,month,day);
-            return this;
-        }
-
         /**
          * builds the object Task
          *
          * @return constructed Task
          */
         public Task build(){
-            return new Task(title,date,isChecked,0,priority);
+            return new Task(title,isChecked,priority);
         }
     }
 
@@ -122,10 +94,22 @@ public class Task
      * converts object to String
      * overriding toString method makes it easier to operate
      */
+
     @Override
     public String toString(){
-        return "Title: " +title+", Date: "
-                +date+", Checked: "+isChecked+", id: "+taskId+" Priority: "+priority;
+        return "Title: " +title+", Checked: "+isChecked+", Priority: "+priority;
     }
+
+    /**
+     public void check(int taskId) throws EntryNotFoundException {
+     Task task = getTaskById(taskId);
+     task.setIsChecked(true);
+     }
+
+     public void unCheck(int taskId) throws EntryNotFoundException {
+     Task task = getTaskById(taskId);
+     task.setIsChecked(false);
+     }
+     */
 }
 
