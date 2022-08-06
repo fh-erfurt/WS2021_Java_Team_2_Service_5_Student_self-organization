@@ -1,6 +1,6 @@
 package de.fherfurt.organization.storage.core;
 
-import de.fherfurt.organization.models.Element;
+import de.fherfurt.organization.core.models.Element;
 
 import javax.persistence.EntityManager;
 import java.util.List;

@@ -1,9 +1,6 @@
 package de.fherfurt.organization.storage.core;
 
-import de.fherfurt.organization.models.Answer;
-import de.fherfurt.organization.models.Element;
-import de.fherfurt.organization.models.Message;
-import de.fherfurt.organization.models.Question;
+import de.fherfurt.organization.core.models.*;
 import de.fherfurt.organization.storage.repository.*;
 
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +24,8 @@ public class RepositoryFactory {
     private RepositoryFactory() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory( PERSISTENCE_UNIT_NAME );
 
-        this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao(), this.getElementDao(), this.getFaqDao() );
+        this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao(), this.getElementDao(), this.getFaqDao(),
+                this.getTaskDao(), this.getTodoDao());
 
         // TODO: ADD TEST DATA
     }
@@ -49,6 +47,10 @@ public class RepositoryFactory {
     }
 
     public IFaqRepositiory getFaqRepository(){
+        return this.repository;
+    }
+
+    public TodoRepository getTodoRepository() {
         return this.repository;
     }
 
@@ -78,5 +80,14 @@ public class RepositoryFactory {
     public IGenericDao<Element> getElementDao() {
         return new JpaGenericDao<>(Element.class,
                 this.entityManagerFactory.createEntityManager());
+    }
+
+    public IGenericDao<Task> getTaskDao() {
+        return new JpaGenericDao<>(Task.class,
+                this.entityManagerFactory.createEntityManager());
+    }
+
+    public ITaskDao getTodoDao() {
+        return new JpaTaskDao(this.entityManagerFactory.createEntityManager());
     }
 }

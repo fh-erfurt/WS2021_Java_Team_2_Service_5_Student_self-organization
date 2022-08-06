@@ -1,6 +1,6 @@
 package de.fherfurt.organization.storage.repository;
 
-import de.fherfurt.organization.models.Element;
+import de.fherfurt.organization.core.models.Element;
 
 import java.util.List;
 

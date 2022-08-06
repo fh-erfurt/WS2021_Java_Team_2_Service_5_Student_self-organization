@@ -1,30 +1,35 @@
 package de.fherfurt.organization.storage.repository;
 
-import de.fherfurt.organization.models.Answer;
-import de.fherfurt.organization.models.Element;
-import de.fherfurt.organization.models.Message;
-import de.fherfurt.organization.models.Question;
+import de.fherfurt.organization.core.enums.Priority;
+import de.fherfurt.organization.core.models.*;
 import de.fherfurt.organization.storage.core.IFaqDao;
 import de.fherfurt.organization.storage.core.IGenericDao;
+import de.fherfurt.organization.storage.core.ITaskDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository, IFaqRepositiory{
+public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository, IFaqRepositiory, TodoRepository{
 
     private final IGenericDao<Message> messageDao;
     private final IGenericDao<Answer> answerDao;
     private final IGenericDao<Question> questionDao;
     private final IGenericDao<Element> elementDao;
+    private final IGenericDao<Task> taskDao;
 
     private final IFaqDao faqDao;
 
-    public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, IGenericDao<Question> questionDao, IGenericDao<Element> elementDao, IFaqDao faqDao) {
+    private final ITaskDao todoDao;
+
+    public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, IGenericDao<Question> questionDao,
+                           IGenericDao<Element> elementDao, IFaqDao faqDao, IGenericDao<Task> taskDao, ITaskDao todoDao) {
         this.messageDao = messageDao;
         this.answerDao = answerDao;
         this.questionDao = questionDao;
         this.elementDao = elementDao;
         this.faqDao = faqDao;
+        this.taskDao = taskDao;
+        this.todoDao = todoDao;
     }
 
     /*
@@ -152,5 +157,47 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
     @Override
     public List<Element> getAllElements() {
         return new ArrayList<>(this.elementDao.findAll());
+    }
+
+    //todo_Implementation
+
+    @Override
+    public List<Task> getAllTasks() {
+        return new ArrayList<>( this.taskDao.findAll() );
+    }
+
+    @Override
+    public Task getTask(int taskId) {
+        return this.taskDao.findById( taskId );
+    }
+
+    @Override
+    public boolean deleteTask(int taskId) {
+       return this.taskDao.delete(taskId);
+    }
+
+    @Override
+    public boolean createTask(Task task) {
+        return this.taskDao.create(task);
+    }
+
+    @Override
+    public boolean updateTask(Task task) {
+        return this.taskDao.update(task) == task;
+    }
+
+    @Override
+    public List<Task> getTaskByChecked(boolean isChecked) {
+        return this.todoDao.findTaskByChecked(isChecked);
+    }
+
+    @Override
+    public List<Task> getTaskByPriority(Priority priority) {
+        return this.todoDao.findTaskByPriority(priority);
+    }
+
+    @Override
+    public List<Task> getTaskByUnchecked(boolean isChecked) {
+        return this.todoDao.findTaskByUnchecked(isChecked);
     }
 }
