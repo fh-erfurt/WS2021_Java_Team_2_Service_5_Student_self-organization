@@ -23,8 +23,6 @@
 
     <modules>
         <module>student_self_organization-service</module>
-        <module>student_self_organization-client</module>
-        <module>persons-client</module>
     </modules>
 
     <properties>

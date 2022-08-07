@@ -4,7 +4,12 @@ import de.fherfurt.organization.core.models.Element;
 
 import java.util.List;
 
-public interface IFaqRepositiory {
+/**
+ * Interface for faq repository
+ *
+ * @author Felix Zwicker
+ */
+public interface FaqRepositiory {
 
     boolean createElement(Element element);
 

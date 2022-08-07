@@ -1,7 +1,6 @@
 package de.fherfurt.organization.forum.core;
 
-import de.fherfurt.organization.models.Answer;
-import de.fherfurt.organization.models.Question;
+import de.fherfurt.organization.core.models.Question;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

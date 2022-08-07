@@ -3,6 +3,11 @@ package de.fherfurt.organization.storage.core;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * This is an entity-class. Its serves as a parent with specific attributes for all entity child classes
+ * that want to be storable.
+ */
+
 @Entity
 @Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
 public abstract class AbstractDatabaseEntity {
