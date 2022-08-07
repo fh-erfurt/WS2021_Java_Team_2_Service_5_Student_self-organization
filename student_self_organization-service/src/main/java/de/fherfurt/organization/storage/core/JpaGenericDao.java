@@ -5,6 +5,11 @@ import javax.persistence.Query;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * this class implements all methods of the IGenericDao interface
+ *
+ * @see IGenericDao
+ */
 public class JpaGenericDao<T extends AbstractDatabaseEntity> implements IGenericDao<T> {
 
     private final Class<T> persistentClass;

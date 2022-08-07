@@ -6,6 +6,11 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * implementation of the IFaqDao
+ *
+ * @author Felix Zwicker
+ */
 public class JpaFaqDao extends JpaGenericDao<Element> implements IFaqDao {
 
     public JpaFaqDao(EntityManager entityManager){

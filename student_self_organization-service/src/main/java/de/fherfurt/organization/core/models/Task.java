@@ -6,8 +6,8 @@ import de.fherfurt.organization.core.enums.Priority;
 import javax.persistence.Entity;
 
 /**
- * Class carries all information of a Todo-Task
- * Class represents and creates element for Todo and puts them in the Todo class
+ * Class carries all information of a To-do-Task
+ * Class represents and creates element for To-do and puts them in the To-do class
  *
  * @author Tim Eisenberg, Maximilian Keller, Felix Zwicker
  */
@@ -99,17 +99,5 @@ public class Task extends AbstractDatabaseEntity//StorageEntity
     public String toString(){
         return "Title: " +title+", Checked: "+isChecked+", Priority: "+priority;
     }
-
-    /**
-     public void check(int taskId) throws EntryNotFoundException {
-     Task task = getTaskById(taskId);
-     task.setIsChecked(true);
-     }
-
-     public void unCheck(int taskId) throws EntryNotFoundException {
-     Task task = getTaskById(taskId);
-     task.setIsChecked(false);
-     }
-     */
 }
 

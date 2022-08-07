@@ -9,7 +9,10 @@ import de.fherfurt.organization.storage.core.ITaskDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository, IFaqRepositiory, TodoRepository{
+/**
+ * implementation of all repositorys
+ */
+public class RepositoryImpl implements  MessageRepository, AnswerRepository, QuestionRepository, FaqRepositiory, TodoRepository{
 
     private final IGenericDao<Message> messageDao;
     private final IGenericDao<Answer> answerDao;
@@ -18,7 +21,6 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
     private final IGenericDao<Task> taskDao;
 
     private final IFaqDao faqDao;
-
     private final ITaskDao todoDao;
 
     public RepositoryImpl (IGenericDao<Message> messageDao, IGenericDao<Answer> answerDao, IGenericDao<Question> questionDao,
@@ -159,7 +161,9 @@ public class RepositoryImpl implements  MessageRepository, AnswerRepository, Que
         return new ArrayList<>(this.elementDao.findAll());
     }
 
-    //todo_Implementation
+    /*
+        To-do Repository Implementation
+     */
 
     @Override
     public List<Task> getAllTasks() {

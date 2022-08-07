@@ -2,18 +2,27 @@ package de.fherfurt.organization.storage.core;
 
 import de.fherfurt.organization.core.models.*;
 import de.fherfurt.organization.storage.repository.*;
+import de.fherfurt.organization.util.DataProvider;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+/**
+ * Singleton-class that initializes RepositoryImpl and handles all repos, dao's and
+ * the EntityManagerFactory
+ */
 public class RepositoryFactory {
-    private static final String PERSISTENCE_UNIT_NAME = "";
+    private static final String PERSISTENCE_UNIT_NAME = "student_self_organization_unit";
 
     private final EntityManagerFactory entityManagerFactory;
     private final RepositoryImpl repository;
 
     private static RepositoryFactory INSTANCE;
 
+    /**
+     * Singleton Pattern to get Instance
+     * @return instance of RepositoryFactory
+     */
     public static RepositoryFactory getInstance() {
         if( INSTANCE == null ) {
             INSTANCE = new RepositoryFactory();
@@ -21,13 +30,18 @@ public class RepositoryFactory {
         return INSTANCE;
     }
 
+    /**
+     * no Args constructor for singleton
+     */
     private RepositoryFactory() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory( PERSISTENCE_UNIT_NAME );
 
         this.repository = new RepositoryImpl(this.getMessageDao(), this.getAnswerDao(), this.getQuestionDao(), this.getElementDao(), this.getFaqDao(),
                 this.getTaskDao(), this.getTodoDao());
 
-        // TODO: ADD TEST DATA
+        //Test Data
+        DataProvider dataProvider = new DataProvider();
+        dataProvider.getFaqElements().forEach(this.repository::createElement);
     }
 
     /*
@@ -46,7 +60,7 @@ public class RepositoryFactory {
         return this.repository;
     }
 
-    public IFaqRepositiory getFaqRepository(){
+    public FaqRepositiory getFaqRepository(){
         return this.repository;
     }
 
