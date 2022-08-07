@@ -17,9 +17,9 @@ public interface TodoRepository {
 
     boolean updateTask(Task task);
 
-    List<Task> getTaskByChecked(boolean isChecked);
+    List<Task> getTaskByChecked(boolean isChecked); // sorting tasks for "checked-tasks"
 
-    List<Task> getTaskByPriority(Priority priority);
+    List<Task> getTaskByPriority(Priority priority); // sorting tasks for the priority "Highly Important", "Important" and "Insignificant"
 
-    List<Task> getTaskByUnchecked(boolean isChecked);
+    List<Task> getTaskByUnchecked(boolean isChecked); // sorting tasks for "unchecked-tasks"
 }

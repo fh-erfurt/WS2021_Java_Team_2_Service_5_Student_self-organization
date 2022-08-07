@@ -19,22 +19,22 @@ public class TaskResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON) // using the json format for the application
     public List<Task> getAllTasks(){
         return this.todoRepository.getAllTasks();
     }
 
     @GET
-    @Path("{taskId:\\d+}")
+    @Path("{taskId:\\d+}") // taskId is being used for getting a certain task
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTask(@PathParam("taskId") int taskId){
         Task task = this.todoRepository.getTask(taskId);
 
         if(task != null){
-            return Response.ok(task).build();
+            return Response.ok(task).build(); // gives the task back as a response
         }
         else{
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).build(); // gives the response that the task couldn't be found (404)
         }
     }
 
@@ -48,7 +48,7 @@ public class TaskResource {
             return Response.ok(taskToCreate).build();
         }
         else{
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build(); // gives the response of an internal server error (500)
         }
     }
 

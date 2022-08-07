@@ -7,6 +7,11 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class extends the GenericDao from JPA with the functions:
+ * findTaskByChecked, findTaskByUnchecked, findTaskByPriority
+ * these functions sort the Tasks after Checked, Unchecked and the Priorities
+ */
 public class JpaTaskDao extends JpaGenericDao <Task> implements ITaskDao {
 
     public JpaTaskDao(EntityManager em) {
